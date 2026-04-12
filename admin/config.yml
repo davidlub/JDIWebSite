@@ -1,0 +1,106 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: images
+public_folder: /images
+
+collections:
+  - name: statements
+    label: Statements
+    label_singular: Statement
+    files:
+      - label: All Statements
+        name: statements
+        file: _data/statements.json
+        format: json
+        fields:
+          - label: Statements
+            name: items
+            widget: list
+            label_singular: Statement
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - label: Date
+                name: date
+                widget: string
+                hint: "e.g. Feb 2025 or 27 Jan 2025"
+              - label: Category
+                name: category
+                widget: select
+                options:
+                  - { label: "Gaza & Conflict", value: "gaza" }
+                  - { label: "Occupation",      value: "occupation" }
+                  - { label: "South Africa",    value: "south-africa" }
+                  - { label: "Human Rights",    value: "human-rights" }
+                  - { label: "Community",       value: "community" }
+              - label: Title
+                name: title
+                widget: string
+              - label: Excerpt
+                name: excerpt
+                widget: text
+              - label: Link
+                name: link
+                widget: string
+                hint: "Path from site root, e.g. statements/my-statement.html or statements/doc.pdf. Use a full URL for external links."
+              - label: Link Text
+                name: linkText
+                widget: string
+                default: "Read Full Statement"
+
+  - name: media
+    label: "News & Media"
+    files:
+      - label: "News & Media"
+        name: media
+        file: _data/media.json
+        format: json
+        fields:
+          - label: Featured Article
+            name: featured
+            widget: object
+            fields:
+              - { label: Date,         name: date,     widget: string }
+              - { label: Reading Time, name: duration, widget: string, hint: "e.g. 7 min read" }
+              - { label: Title,        name: title,    widget: string }
+              - { label: Excerpt,      name: excerpt,  widget: text }
+              - { label: Link,         name: link,     widget: string }
+              - { label: Link Text,    name: linkText, widget: string, default: "Read Article" }
+          - label: Articles
+            name: items
+            widget: list
+            label_singular: Article
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: Date,           name: date,     widget: string }
+              - { label: Duration / Type, name: duration, widget: string, hint: "e.g. 6 min read or Radio interview" }
+              - label: Category
+                name: category
+                widget: select
+                options:
+                  - { label: Opinion,        value: opinion }
+                  - { label: Report,         value: report }
+                  - { label: In the Media,   value: media }
+                  - { label: Event,          value: event }
+                  - { label: Community,      value: community }
+              - { label: Title,     name: title,   widget: string }
+              - { label: Excerpt,   name: excerpt, widget: text }
+              - { label: Link,      name: link,    widget: string }
+              - { label: Link Text, name: linkText, widget: string, default: "Read More" }
+              - label: Colour Scheme
+                name: colorScheme
+                widget: select
+                default: primary
+                options:
+                  - { label: "Blue (Primary)", value: primary }
+                  - { label: Green,            value: green }
+                  - { label: Red / Brown,      value: red }
+                  - { label: Blue,             value: blue }
+                  - { label: Gray,             value: gray }
+                  - { label: Purple,           value: purple }
+                  - { label: Teal,             value: teal }
+                  - { label: Dark Blue,        value: darkblue }
+                  - { label: Pink,             value: pink }
+                  - { label: Amber,            value: amber }
+              - { label: "Icon (emoji)", name: icon, widget: string, default: "📄" }

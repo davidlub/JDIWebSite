@@ -1,0 +1,111 @@
+{
+  "featured": {
+    "date": "28 February 2025",
+    "duration": "7 min read",
+    "title": "The Jewish Case for Palestinian Rights",
+    "excerpt": "Why Jewish values — rooted in the prophetic tradition and the experience of persecution — demand that we stand with Palestinians in their struggle for freedom and dignity.",
+    "link": "#",
+    "linkText": "Read Article"
+  },
+  "items": [
+    {
+      "date": "15 Jan 2025",
+      "duration": "5 min read",
+      "category": "community",
+      "title": "Jewish South Africans and the Anti-Apartheid Struggle",
+      "excerpt": "Reflecting on the legacy of Jewish activists who stood against apartheid, and what that history demands of us today.",
+      "link": "#",
+      "linkText": "Read More",
+      "colorScheme": "green",
+      "icon": "🏛️"
+    },
+    {
+      "date": "3 Dec 2024",
+      "duration": "6 min read",
+      "category": "opinion",
+      "title": "Building a Different Kind of Jewish Community",
+      "excerpt": "The JDI's vision for an inclusive, pluralistic South African Jewish community that is not afraid to challenge power.",
+      "link": "#",
+      "linkText": "Read More",
+      "colorScheme": "red",
+      "icon": "✍️"
+    },
+    {
+      "date": "20 Nov 2024",
+      "duration": "Radio interview",
+      "category": "media",
+      "title": "JDI Chairperson on Radio 702: Jewish Dissent and the Gaza War",
+      "excerpt": "Listen to our Chairperson discuss the importance of Jewish dissent and the moral stakes of silence during the Gaza war.",
+      "link": "#",
+      "linkText": "Listen",
+      "colorScheme": "blue",
+      "icon": "🎙️"
+    },
+    {
+      "date": "5 Oct 2024",
+      "duration": "15 min read",
+      "category": "report",
+      "title": "Annual Review: JDI's Year in Advocacy",
+      "excerpt": "A summary of JDI's advocacy activities, public statements, events, and media appearances over the past year.",
+      "link": "#",
+      "linkText": "Read Report",
+      "colorScheme": "gray",
+      "icon": "📊"
+    },
+    {
+      "date": "12 Sep 2024",
+      "duration": "Event write-up",
+      "category": "event",
+      "title": "Highlights from Our Annual General Meeting",
+      "excerpt": "A look back at the discussions, resolutions, and energy at JDI's 2024 Annual General Meeting held in Johannesburg.",
+      "link": "#",
+      "linkText": "Read More",
+      "colorScheme": "purple",
+      "icon": "📅"
+    },
+    {
+      "date": "30 Jul 2024",
+      "duration": "4 min read",
+      "category": "opinion",
+      "title": "Why \"Both Sides\" is Not Enough — A Jewish Perspective",
+      "excerpt": "The \"both sides\" framing obscures the power imbalance of occupation. True Jewish ethics demands we name injustice clearly.",
+      "link": "#",
+      "linkText": "Read More",
+      "colorScheme": "teal",
+      "icon": "🕊️"
+    },
+    {
+      "date": "4 Jun 2024",
+      "duration": "TV interview",
+      "category": "media",
+      "title": "SABC Interview: The South African Jewish Community and Palestine",
+      "excerpt": "JDI's perspective on how South African Jews are engaging with the conflict and the growing divide in communal opinion.",
+      "link": "#",
+      "linkText": "Watch",
+      "colorScheme": "darkblue",
+      "icon": "📺"
+    },
+    {
+      "date": "18 Apr 2024",
+      "duration": "3 min read",
+      "category": "community",
+      "title": "Jewish South Africa at 30: Freedom Day Reflections",
+      "excerpt": "On Freedom Day, JDI reflects on what South Africa's democratic journey means for Jews who believe in universal freedom.",
+      "link": "#",
+      "linkText": "Read More",
+      "colorScheme": "pink",
+      "icon": "🌍"
+    },
+    {
+      "date": "22 Jan 2024",
+      "duration": "5 min read",
+      "category": "opinion",
+      "title": "Tikkun Olam in the Age of Gaza: What Does Jewish Repair Demand?",
+      "excerpt": "The ancient Jewish concept of repairing the world has never felt more urgent — or more challenging to live up to.",
+      "link": "#",
+      "linkText": "Read More",
+      "colorScheme": "amber",
+      "icon": "✡️"
+    }
+  ]
+}

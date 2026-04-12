@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"C:/Users/david/OneDrive - Opsi Systems \\(Pty\\) Ltd/DL/personal/JDI/NewWebsite/css\")",
+      "Bash(mkdir -p \"C:/Users/david/OneDrive - Opsi Systems \\(Pty\\) Ltd/DL/personal/JDI/NewWebsite/js\")",
+      "Bash(mkdir -p \"C:/Users/david/OneDrive - Opsi Systems \\(Pty\\) Ltd/DL/personal/JDI/NewWebsite/images\")",
+      "Bash(mkdir -p \"C:/Users/david/OneDrive - Opsi Systems \\(Pty\\) Ltd/DL/personal/JDI/NewWebsite/pages\")",
+      "WebFetch(domain:www.jdisa.org)",
+      "WebFetch(domain:static1.squarespace.com)",
+      "Bash(curl -L -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/122.0.0.0 Safari/537.36\" -H \"Referer: https://www.jdisa.org/statements\" -o \"JudicialoverhaulJuly23.pdf\" \"https://www.jdisa.org/s/JudicialoverhaulJuly23.pdf\")",
+      "Bash(curl -L -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" -H \"Referer: https://www.jdisa.org/statements\" -o \"C:/Users/david/OneDrive - Opsi Systems \\(Pty\\) Ltd/DL/personal/JDI/NewWebsite/statements/9Oct_JDIstatement.pdf\" \"https://www.jdisa.org/s/9Oct_JDIstatement.pdf\")"
+    ]
+  }
+}
