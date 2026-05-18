@@ -1,0 +1,15 @@
+# API keys / secrets
+notionAPI.txt
+
+# One-time migration scripts (contain hardcoded API key)
+notion_import.py
+notion_add_pictures.py
+notion_upload_docs.py
+
+# Local IDE / tool settings
+.claude/settings.local.json
+
+# Build artefacts
+*.zip
+__pycache__/
+*.pyc

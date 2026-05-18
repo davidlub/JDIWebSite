@@ -1,8 +1,14 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
 # JDI SA Website — Editor's Guide
 
 ## Folder Structure
 
-```
+```         
 NewWebsite/
 ├── index.html          ← Home page
 ├── css/
@@ -23,14 +29,16 @@ NewWebsite/
 └── WEBSITE-GUIDE.md    ← This file
 ```
 
----
+------------------------------------------------------------------------
 
 ## How to Update Content
 
 ### Adding a New Statement
-Open `pages/statements.html` and copy this block, pasting it inside the relevant year section:
 
-```html
+Open `pages/statements.html` and copy this block, pasting it inside the
+relevant year section:
+
+``` html
 <div class="statement-item" data-searchable data-category="CATEGORY">
   <div class="statement-date">Month YYYY</div>
   <div class="statement-body">
@@ -42,19 +50,17 @@ Open `pages/statements.html` and copy this block, pasting it inside the relevant
 </div>
 ```
 
-**Available categories** (for the `data-category` attribute):
-- `gaza` — Gaza & Conflict
-- `occupation` — Occupation
-- `south-africa` — South Africa
-- `human-rights` — Human Rights
-- `community` — Community
+**Available categories** (for the `data-category` attribute): - `gaza` —
+Gaza & Conflict - `occupation` — Occupation - `south-africa` — South
+Africa - `human-rights` — Human Rights - `community` — Community
 
----
+------------------------------------------------------------------------
 
 ### Adding a News/Media Article
+
 Open `pages/media.html` and paste inside the `.grid-3` div:
 
-```html
+``` html
 <article class="card" data-category="CATEGORY" data-searchable>
   <div class="card-img-placeholder" style="background:linear-gradient(135deg,#1a3a6b,#2a5298);">
     <span style="font-size:3rem;">📰</span>
@@ -72,16 +78,18 @@ Open `pages/media.html` and paste inside the `.grid-3` div:
 **Categories:** `opinion`, `report`, `media`, `event`, `community`
 
 To use a real photo instead of the placeholder icon:
-```html
+
+``` html
 <img src="../images/your-photo.jpg" alt="Description" class="card-img" />
 ```
 
----
+------------------------------------------------------------------------
 
 ### Adding an Event
+
 Open `pages/get-involved.html`, find the events section, and paste:
 
-```html
+``` html
 <div class="card card-body" style="display:grid;grid-template-columns:100px 1fr;gap:2rem;align-items:center;">
   <div style="text-align:center;background:var(--color-primary);color:#fff;border-radius:var(--radius-sm);padding:1rem;">
     <div style="font-size:1.8rem;font-weight:700;font-family:var(--font-serif);">DD</div>
@@ -97,82 +105,85 @@ Open `pages/get-involved.html`, find the events section, and paste:
 </div>
 ```
 
----
+------------------------------------------------------------------------
 
 ## Colours
 
 Edit in `css/main.css` at the top (`:root` section):
 
-| Variable | Value | Used for |
-|---|---|---|
-| `--color-primary` | `#1a3a6b` | Deep blue — main brand colour |
-| `--color-gold` | `#c8a84b` | Gold — accents, CTAs |
-| `--color-green` | `#2d6a4f` | Green — South Africa tags |
+| Variable          | Value     | Used for                        |
+|-------------------|-----------|---------------------------------|
+| `--color-primary` | `#1a3a6b` | Deep blue — main brand colour   |
+| `--color-gold`    | `#c8a84b` | Gold — accents, CTAs            |
+| `--color-green`   | `#2d6a4f` | Green — South Africa tags       |
 | `--color-bg-dark` | `#0f2040` | Dark backgrounds (hero, footer) |
 
----
+------------------------------------------------------------------------
 
 ## Images
 
-1. Add image files to the `images/` folder
-2. Reference them in HTML as:
-   - From `index.html`: `images/your-file.jpg`
-   - From `pages/*.html`: `../images/your-file.jpg`
+1.  Add image files to the `images/` folder
+2.  Reference them in HTML as:
+    -   From `index.html`: `images/your-file.jpg`
+    -   From `pages/*.html`: `../images/your-file.jpg`
 
 For a card image, replace the `card-img-placeholder` div with:
-```html
+
+``` html
 <img src="../images/your-photo.jpg" alt="Descriptive text" class="card-img" />
 ```
 
----
+------------------------------------------------------------------------
 
 ## Adding Real Links / External URLs
 
-- Replace all `href="#"` placeholders with real URLs
-- For external links, add `target="_blank" rel="noopener noreferrer"`
+-   Replace all `href="#"` placeholders with real URLs
+-   For external links, add `target="_blank" rel="noopener noreferrer"`
 
----
+------------------------------------------------------------------------
 
 ## Social Media Links
 
-In each footer, find the three `.social-link` elements and add real URLs:
-```html
+In each footer, find the three `.social-link` elements and add real
+URLs:
+
+``` html
 <a href="https://www.facebook.com/YOURPAGE" class="social-link" target="_blank" rel="noopener noreferrer">f</a>
 <a href="https://twitter.com/YOURHANDLE"    class="social-link" target="_blank" rel="noopener noreferrer">𝕏</a>
 <a href="https://instagram.com/YOURHANDLE" class="social-link" target="_blank" rel="noopener noreferrer">▣</a>
 ```
 
----
+------------------------------------------------------------------------
 
 ## Making the Forms Work
 
-The forms currently show a "Thank you" confirmation in the browser. To send emails or save data, you will need to:
+The forms currently show a "Thank you" confirmation in the browser. To
+send emails or save data, you will need to:
 
-**Option A — Free: Formspree**
-1. Sign up at formspree.io
-2. Add `action="https://formspree.io/f/YOUR_ID" method="POST"` to each `<form>` tag
-3. Remove the `class="jdi-form"` from forms that should submit for real
-4. Remove the JS form-intercept for those forms in `js/main.js`
+**Option A — Free: Formspree** 1. Sign up at formspree.io 2. Add
+`action="https://formspree.io/f/YOUR_ID" method="POST"` to each `<form>`
+tag 3. Remove the `class="jdi-form"` from forms that should submit for
+real 4. Remove the JS form-intercept for those forms in `js/main.js`
 
-**Option B — Mailchimp newsletter**
-Replace the newsletter form action with your Mailchimp embed code.
+**Option B — Mailchimp newsletter** Replace the newsletter form action
+with your Mailchimp embed code.
 
-**Option C — Full CMS (recommended for long term)**
-Migrate content into a CMS like WordPress, Webflow, or Squarespace using this design as the template.
+**Option C — Full CMS (recommended for long term)** Migrate content into
+a CMS like WordPress, Webflow, or Squarespace using this design as the
+template.
 
----
+------------------------------------------------------------------------
 
 ## Publishing the Website
 
-**Option A: Simple (no backend needed)**
-Upload the entire `NewWebsite/` folder to any static web host:
-- Netlify (free): drag & drop the folder at app.netlify.com
-- GitHub Pages (free): push to a GitHub repo
-- Your existing hosting: upload via FTP
+**Option A: Simple (no backend needed)** Upload the entire `NewWebsite/`
+folder to any static web host: - Netlify (free): drag & drop the folder
+at app.netlify.com - GitHub Pages (free): push to a GitHub repo - Your
+existing hosting: upload via FTP
 
-**Option B: Replace existing site**
-Upload these files to your current jdisa.org hosting account, replacing the existing files.
+**Option B: Replace existing site** Upload these files to your current
+jdisa.org hosting account, replacing the existing files.
 
----
+------------------------------------------------------------------------
 
 *Website designed April 2025.*

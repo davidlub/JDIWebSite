@@ -50,22 +50,12 @@
     </div>
   </section>
 
-  <!-- SEARCH & FILTER -->
+  <!-- SEARCH -->
   <section class="section" style="padding-bottom:0;">
     <div class="container">
-      <div class="flex-between" style="flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;">
-        <div class="search-bar">
-          <input type="search" placeholder="Search statements…" aria-label="Search statements" />
-          <button class="btn btn-primary">Search</button>
-        </div>
-      </div>
-      <div class="filter-bar" role="group" aria-label="Filter by topic">
-        <button class="filter-btn active" data-filter="all">All Topics</button>
-        <button class="filter-btn" data-filter="gaza">Gaza &amp; Conflict</button>
-        <button class="filter-btn" data-filter="occupation">Occupation</button>
-        <button class="filter-btn" data-filter="south-africa">South Africa</button>
-        <button class="filter-btn" data-filter="human-rights">Human Rights</button>
-        <button class="filter-btn" data-filter="community">Community</button>
+      <div class="search-bar" style="max-width:480px;">
+        <input type="search" id="stmt-search" placeholder="Search statements…" aria-label="Search statements" autocomplete="off" />
+        <button class="btn btn-primary" onclick="doSearch()">Search</button>
       </div>
     </div>
   </section>
@@ -73,7 +63,7 @@
   <!-- STATEMENTS LIST -->
   <section class="section" style="padding-top:1.5rem;">
     <div class="container" id="statements-list">
-      <p style="color:var(--color-primary);">Loading statements…</p>
+      <p class="stmt-loading" style="color:var(--color-text-muted);padding:2rem 0;">Loading statements…</p>
     </div>
   </section>
 
@@ -138,5 +128,129 @@
   </footer>
 
   <script src="../js/main.js"></script>
+  <script>
+  (function () {
+    var allStatements = [];
+
+    function formatDate(iso) {
+      if (!iso) return '';
+      var d = new Date(iso + 'T00:00:00');
+      return d.toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    function docLabel(name) {
+      if (!name) return 'Read Document';
+      var ext = name.split('.').pop().toLowerCase();
+      if (ext === 'pdf')  return 'View PDF';
+      if (ext === 'docx') return 'Download DOCX';
+      return 'Read Document';
+    }
+
+    function renderStatements(list) {
+      var container = document.getElementById('statements-list');
+      if (!list.length) {
+        container.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;">No statements found.</p>';
+        return;
+      }
+
+      // Group by year
+      var byYear = {};
+      list.forEach(function (s) {
+        var year = s.date ? s.date.slice(0, 4) : 'Undated';
+        if (!byYear[year]) byYear[year] = [];
+        byYear[year].push(s);
+      });
+
+      var years = Object.keys(byYear).sort(function (a, b) { return b - a; });
+      var html = '';
+
+      years.forEach(function (year) {
+        html += '<div class="statements-year-group" style="margin-bottom:3rem;">';
+        html += '<h2 style="font-family:var(--font-serif);color:var(--color-primary);font-size:1.6rem;'
+              + 'border-bottom:3px solid var(--color-gold);padding-bottom:.5rem;margin-bottom:1.5rem;">'
+              + year + '</h2>';
+
+        byYear[year].forEach(function (s) {
+          var docLink = s.documentUrl
+            ? '<a href="' + s.documentUrl + '" target="_blank" rel="noopener noreferrer" '
+              + 'class="btn btn-outline btn-sm" style="margin-top:1rem;">'
+              + docLabel(s.docName) + ' &rarr;</a>'
+            : '';
+
+          html += '<div class="statement-item" style="display:flex;gap:1.5rem;padding:1.5rem 0;'
+                + 'border-bottom:1px solid var(--color-border);align-items:flex-start;">';
+
+          // Date column
+          html += '<div style="min-width:120px;text-align:right;padding-top:.25rem;flex-shrink:0;">'
+                + '<span style="font-size:.8rem;font-weight:600;color:var(--color-gold);'
+                + 'text-transform:uppercase;letter-spacing:.05em;">'
+                + formatDate(s.date) + '</span></div>';
+
+          // Content column
+          html += '<div style="flex:1;">';
+          if (s.documentUrl) {
+            html += '<h3 style="font-size:1.05rem;font-weight:600;margin:0 0 .5rem;line-height:1.4;">'
+                  + '<a href="' + s.documentUrl + '" target="_blank" rel="noopener noreferrer" '
+                  + 'style="color:var(--color-primary);text-decoration:none;" '
+                  + 'onmouseover="this.style.textDecoration=\'underline\'" '
+                  + 'onmouseout="this.style.textDecoration=\'none\'">'
+                  + escHtml(s.name) + '</a></h3>';
+          } else {
+            html += '<h3 style="font-size:1.05rem;font-weight:600;margin:0 0 .5rem;line-height:1.4;'
+                  + 'color:var(--color-primary);">' + escHtml(s.name) + '</h3>';
+          }
+          if (s.summary) {
+            html += '<p style="color:var(--color-text-muted);font-size:.95rem;line-height:1.7;margin:0;">'
+                  + escHtml(s.summary) + '</p>';
+          }
+          html += docLink;
+          html += '</div>';
+
+          html += '</div>'; // .statement-item
+        });
+
+        html += '</div>'; // .statements-year-group
+      });
+
+      container.innerHTML = html;
+    }
+
+    function escHtml(str) {
+      return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function doSearch() {
+      var q = document.getElementById('stmt-search').value.trim().toLowerCase();
+      if (!q) { renderStatements(allStatements); return; }
+      var filtered = allStatements.filter(function (s) {
+        return (s.name + ' ' + s.summary).toLowerCase().includes(q);
+      });
+      renderStatements(filtered);
+    }
+    window.doSearch = doSearch;
+
+    // Live search on keyup
+    document.getElementById('stmt-search').addEventListener('keyup', function (e) {
+      if (e.key === 'Enter') doSearch();
+    });
+
+    // Fetch from Netlify function
+    fetch('/.netlify/functions/statements')
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        allStatements = data;
+        renderStatements(allStatements);
+      })
+      .catch(function (err) {
+        document.getElementById('statements-list').innerHTML =
+          '<p style="color:var(--color-text-muted);padding:2rem 0;">'
+          + 'Unable to load statements at this time. Please check back shortly.</p>';
+        console.error('Statements fetch error:', err);
+      });
+  })();
+  </script>
 </body>
 </html>
