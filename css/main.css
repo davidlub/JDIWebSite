@@ -299,9 +299,6 @@ p:last-child { margin-bottom: 0; }
   width: 100%;
   height: auto;
   display: block;
-  background: #fff;
-  padding: 1.25rem 2rem;
-  border-radius: 12px;
   box-shadow: 0 0 30px 8px rgba(200,168,75,.3), 0 0 60px 16px rgba(200,168,75,.12);
 }
 
