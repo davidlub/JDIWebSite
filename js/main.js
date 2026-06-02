@@ -262,16 +262,6 @@ function renderMedia(data) {
 }
 
 function loadDynamicContent() {
-  const statementsContainer = document.getElementById('statements-list');
-  if (statementsContainer) {
-    fetch('../_data/statements.json')
-      .then(r => r.json())
-      .then(data => renderStatements(statementsContainer, data.items))
-      .catch(() => {
-        statementsContainer.innerHTML = '<p style="padding:2rem 0;color:var(--color-primary);">Unable to load statements.</p>';
-      });
-  }
-
   if (document.getElementById('media-featured') || document.getElementById('media-grid')) {
     fetch('../_data/media.json')
       .then(r => r.json())
