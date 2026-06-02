@@ -36,16 +36,17 @@ exports.handler = async function () {
     } while (cursor);
 
     const statements = results.map(page => {
-      const titleParts  = page.properties.Name.title;
+      const props       = page.properties;
+      const titleParts  = props.Name?.title ?? [];
       const name        = titleParts.length ? titleParts[0].plain_text : "";
-      const summary     = page.properties.Summary.rich_text.map(t => t.plain_text).join("");
-      const date        = page.properties.Date.date?.start ?? null;
-      const docFiles    = page.properties.Document.files;
+      const summary     = (props.Summary?.rich_text ?? []).map(t => t.plain_text).join("");
+      const date        = props.Date?.date?.start ?? null;
+      const docFiles    = props.Document?.files ?? [];
       const documentUrl = docFiles.length
         ? (docFiles[0].file?.url ?? docFiles[0].external?.url ?? null)
         : null;
       const docName     = docFiles.length ? docFiles[0].name : null;
-      const picFiles    = page.properties.Picture.files;
+      const picFiles    = props.Picture?.files ?? [];
       const pictureUrl  = picFiles.length
         ? (picFiles[0].file?.url ?? picFiles[0].external?.url ?? null)
         : null;
