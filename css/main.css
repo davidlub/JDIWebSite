@@ -307,7 +307,7 @@ p:last-child { margin-bottom: 0; }
   display: block;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
-  border: 8px solid #fff;
+  border: 1px solid #fff;
 }
 @media (max-width: 768px) {
   .hero-content {
