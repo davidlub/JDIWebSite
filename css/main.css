@@ -295,11 +295,10 @@ p:last-child { margin-bottom: 0; }
   display: inline-block;
 }
 .hero-logo-banner img {
-  max-width: 460px;
+  max-width: 230px;
   width: 100%;
   height: auto;
   display: block;
-  box-shadow: 0 0 30px 8px rgba(200,168,75,.3), 0 0 60px 16px rgba(200,168,75,.12);
 }
 
 .hero-badge {
