@@ -1,6 +1,6 @@
 // Set NOTION_API_KEY in Netlify dashboard → Site settings → Environment variables
 const NOTION_KEY = process.env.NOTION_API_KEY;
-const DB_ID      = "REPLACE_WITH_EVENTS_DATABASE_ID";
+const DB_ID      = "37476fc4-5495-802e-913b-fadcd1305903";
 
 exports.handler = async function () {
   try {
