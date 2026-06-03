@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="../images/jdilogo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events — Jewish Democratic Initiative SA</title>
+  <meta name="description" content="Upcoming events from the Jewish Democratic Initiative — talks, panels, social evenings and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="../index.html" class="nav-logo">
+        <div class="nav-logo-mark" style="background:none;width:auto;height:auto;border-radius:0;"><img src="../images/jdilogo.png" alt="JDI"></div>
+        <div class="nav-logo-text">
+          <strong>Jewish Democratic Initiative</strong>
+          <span>South Africa</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="events.html" class="active">Events</a></li>
+        <li><a href="statements.html">Statements</a></li>
+        <li><a href="get-involved.html">Get Involved</a></li>
+        <li><a href="donate.html" class="btn btn-primary btn-sm">Donate</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span class="sep">/</span><span>Events</span>
+      </nav>
+      <span class="section-label">What's On</span>
+      <h1>JDI Events</h1>
+      <p class="lead">Join us for talks, panels, social evenings and more. Events take place in Johannesburg and Cape Town.</p>
+    </div>
+  </section>
+
+  <!-- EVENTS LIST -->
+  <section class="section">
+    <div class="container" id="events-list">
+      <p class="stmt-loading" style="color:var(--color-text-muted);padding:2rem 0;">Loading events…</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <p>An independent Jewish voice in South Africa, advocating for social justice, democracy, and a peaceful resolution to the Israeli-Palestinian conflict.</p>
+          <div class="social-links">
+            <a href="#" class="social-link">f</a>
+            <a href="#" class="social-link">𝕏</a>
+            <a href="#" class="social-link">▣</a>
+          </div>
+        </div>
+        <div>
+          <h4>Organisation</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About JDI</a></li>
+            <li><a href="donate.html">Donate</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Engage</h4>
+          <ul class="footer-links">
+            <li><a href="statements.html">Statements</a></li>
+            <li><a href="newsletter.html">Newsletter</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get Involved</h4>
+          <ul class="footer-links">
+            <li><a href="get-involved.html">Become a Member</a></li>
+            <li><a href="get-involved.html#volunteer">Volunteer</a></li>
+            <li><a href="get-involved.html#contact">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Jewish Democratic Initiative SA. All rights reserved.</span>
+        <span>Registered Non-Profit Organisation, South Africa</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+  (function () {
+    function formatDate(iso) {
+      if (!iso) return '';
+      var d = new Date(iso + 'T00:00:00');
+      return d.toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    function escHtml(str) {
+      return (str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function renderEvents(list) {
+      var container = document.getElementById('events-list');
+      if (!list.length) {
+        container.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;">No upcoming events at this time. Please check back soon.</p>';
+        return;
+      }
+
+      var html = '<div class="grid-2" style="gap:2rem;">';
+
+      list.forEach(function (ev) {
+        html += '<div class="card animate-on-scroll" style="overflow:hidden;">';
+
+        // Image
+        if (ev.imageUrl) {
+          html += '<div style="width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--color-primary);">'
+                + '<img src="' + escHtml(ev.imageUrl) + '" alt="' + escHtml(ev.name) + '" '
+                + 'style="width:100%;height:100%;object-fit:cover;display:block;" />'
+                + '</div>';
+        } else {
+          html += '<div style="width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,var(--color-primary),#2a5298);'
+                + 'display:flex;align-items:center;justify-content:center;">'
+                + '<span style="font-size:3rem;">📅</span></div>';
+        }
+
+        html += '<div class="card-body" style="padding:1.5rem;">';
+
+        // Date badge
+        if (ev.date) {
+          html += '<div style="margin-bottom:.75rem;">'
+                + '<span style="font-size:.8rem;font-weight:600;color:var(--color-gold);'
+                + 'text-transform:uppercase;letter-spacing:.06em;">'
+                + escHtml(formatDate(ev.date)) + '</span></div>';
+        }
+
+        // Name
+        html += '<h3 style="font-size:1.15rem;font-weight:600;color:var(--color-primary);'
+              + 'line-height:1.4;margin:0 0 1.25rem;">' + escHtml(ev.name) + '</h3>';
+
+        // Booking links
+        if (ev.jhbQuicket) {
+          html += '<div style="margin-bottom:.75rem;">'
+                + '<a href="' + escHtml(ev.jhbQuicket) + '" target="_blank" rel="noopener noreferrer" '
+                + 'class="btn btn-primary btn-sm" style="width:100%;justify-content:center;text-align:center;">'
+                + 'Click link to book for Johannesburg</a></div>';
+        }
+        if (ev.ctQuicket) {
+          html += '<div>'
+                + '<a href="' + escHtml(ev.ctQuicket) + '" target="_blank" rel="noopener noreferrer" '
+                + 'class="btn btn-outline btn-sm" style="width:100%;justify-content:center;text-align:center;">'
+                + 'Click link to book for Cape Town</a></div>';
+        }
+
+        html += '</div>'; // card-body
+        html += '</div>'; // card
+      });
+
+      html += '</div>';
+      container.innerHTML = html;
+      if (typeof initScrollAnimations === 'function') initScrollAnimations(container);
+    }
+
+    fetch('/.netlify/functions/events')
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        renderEvents(data);
+      })
+      .catch(function (err) {
+        document.getElementById('events-list').innerHTML =
+          '<p style="color:var(--color-text-muted);padding:2rem 0;">'
+          + 'Unable to load events at this time. Please check back shortly.</p>';
+        console.error('Events fetch error:', err);
+      });
+  })();
+  </script>
+</body>
+</html>
