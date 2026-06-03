@@ -174,7 +174,9 @@
 
     fetch('/.netlify/functions/events')
       .then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status);
+        if (!res.ok) return res.json().then(function (e) {
+          throw new Error('HTTP ' + res.status + ': ' + (e.error || JSON.stringify(e)));
+        });
         return res.json();
       })
       .then(function (data) {
