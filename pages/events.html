@@ -125,12 +125,12 @@
 
         // Image
         if (ev.imageUrl) {
-          html += '<div style="width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--color-primary);">'
+          html += '<div style="width:100%;aspect-ratio:8/9;overflow:hidden;background:var(--color-primary);">'
                 + '<img src="' + escHtml(ev.imageUrl) + '" alt="' + escHtml(ev.name) + '" '
                 + 'style="width:100%;height:100%;object-fit:cover;display:block;" />'
                 + '</div>';
         } else {
-          html += '<div style="width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,var(--color-primary),#2a5298);'
+          html += '<div style="width:100%;aspect-ratio:8/9;background:linear-gradient(135deg,var(--color-primary),#2a5298);'
                 + 'display:flex;align-items:center;justify-content:center;">'
                 + '<span style="font-size:3rem;">📅</span></div>';
         }
