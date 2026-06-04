@@ -27,6 +27,7 @@
         <li><a href="../index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="events.html">Events</a></li>
+        <li><a href="videos.html">Videos</a></li>
         <li><a href="statements.html" class="active">Statements</a></li>
         <li><a href="get-involved.html">Get Involved</a></li>
         <li><a href="donate.html" class="btn btn-primary btn-sm">Donate</a></li>
@@ -167,7 +168,8 @@
 
         byYear[year].forEach(function (s) {
           var docLink = s.documentUrl
-            ? '<a href="' + s.documentUrl + '" target="_blank" rel="noopener noreferrer" '
+            ? '<a href="' + s.documentUrl + '" '
+              + 'onclick="window.open(this.href,\'jdi-doc\',\'width=1000,height=800,resizable=yes,scrollbars=yes\');return false;" '
               + 'class="btn btn-outline btn-sm" style="margin-top:1rem;">'
               + docLabel(s.docName) + ' &rarr;</a>'
             : '';
@@ -185,7 +187,8 @@
           html += '<div style="flex:1;">';
           if (s.documentUrl) {
             html += '<h3 style="font-size:1.05rem;font-weight:600;margin:0 0 .5rem;line-height:1.4;">'
-                  + '<a href="' + s.documentUrl + '" target="_blank" rel="noopener noreferrer" '
+                  + '<a href="' + s.documentUrl + '" '
+                  + 'onclick="window.open(this.href,\'jdi-doc\',\'width=1000,height=800,resizable=yes,scrollbars=yes\');return false;" '
                   + 'style="color:var(--color-primary);text-decoration:none;" '
                   + 'onmouseover="this.style.textDecoration=\'underline\'" '
                   + 'onmouseout="this.style.textDecoration=\'none\'">'

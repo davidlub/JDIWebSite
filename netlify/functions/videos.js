@@ -1,6 +1,12 @@
 // Set NOTION_API_KEY in Netlify dashboard → Site settings → Environment variables
 const NOTION_KEY = process.env.NOTION_API_KEY;
-const DB_ID      = "37476fc4-5495-802e-913b-fadcd1305903";
+const DB_ID      = "REPLACE_WITH_VIDEOS_DATABASE_ID";
+
+function getYouTubeId(url) {
+  if (!url) return null;
+  var m = url.match(/(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/);
+  return m ? m[1] : null;
+}
 
 exports.handler = async function () {
   try {
@@ -34,21 +40,17 @@ exports.handler = async function () {
       cursor  = data.has_more ? data.next_cursor : undefined;
     } while (cursor);
 
-    const events = results.map(page => {
+    const videos = results.map(page => {
       const props      = page.properties;
       const titleParts = props.Name?.title ?? [];
       const name       = titleParts.length ? titleParts[0].plain_text : "";
       const date       = props.Date?.date?.start ?? null;
-      const imgFiles   = props.Image?.files ?? [];
-      const imageUrl   = imgFiles.length
-        ? (imgFiles[0].file?.url ?? imgFiles[0].external?.url ?? null)
-        : null;
-      const jhbQuicket = props['Jhb Quiket']?.url ?? null;
-      const ctQuicket  = props['CT Quiket']?.url  ?? null;
+      const url        = props.URL?.url ?? null;
       const blurb      = (props.Blurb?.rich_text ?? []).map(t => t.plain_text).join('');
+      const youtubeId  = getYouTubeId(url);
 
-      return { name, date, imageUrl, jhbQuicket, ctQuicket, blurb };
-    }).filter(e => e.name);
+      return { name, date, url, youtubeId, blurb };
+    }).filter(v => v.name && v.youtubeId);
 
     return {
       statusCode: 200,
@@ -57,7 +59,7 @@ exports.handler = async function () {
         "Access-Control-Allow-Origin": "*",
         "Cache-Control":               "public, max-age=300",
       },
-      body: JSON.stringify(events),
+      body: JSON.stringify(videos),
     };
   } catch (err) {
     return {

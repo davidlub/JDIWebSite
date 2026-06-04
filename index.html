@@ -21,6 +21,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="pages/about.html">About Us</a></li>
         <li><a href="pages/events.html">Events</a></li>
+        <li><a href="pages/videos.html">Videos</a></li>
         <li><a href="pages/statements.html">Statements</a></li>
         <li><a href="pages/get-involved.html">Get Involved</a></li>
         <li><a href="pages/donate.html" class="btn btn-primary btn-sm">Donate</a></li>
@@ -58,7 +59,7 @@
           </div>
         </div>
         <div class="hero-image">
-          <img src="images/Save the Date teaserV2-02 June.png" alt="Coming up next from the JDI" />
+          <img id="hero-event-img" src="images/Save the Date teaserV2-02 June.png" alt="Coming up next from the JDI" />
         </div>
       </div>
     </div>
@@ -241,5 +242,16 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    fetch('/.netlify/functions/events')
+      .then(function(r) { return r.json(); })
+      .then(function(events) {
+        if (events && events.length && events[0].imageUrl) {
+          var img = document.getElementById('hero-event-img');
+          if (img) { img.src = events[0].imageUrl; img.alt = events[0].name || 'Upcoming JDI event'; }
+        }
+      })
+      .catch(function() {});
+  </script>
 </body>
 </html>
