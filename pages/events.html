@@ -187,7 +187,6 @@
         return res.json();
       })
       .then(function (data) {
-        console.log('Events API response:', JSON.stringify(data[0], null, 2));
         renderEvents(data);
       })
       .catch(function (err) {
