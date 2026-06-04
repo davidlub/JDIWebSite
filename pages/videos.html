@@ -11,9 +11,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/main.css" />
   <style>
-    .video-embed { width: 49%; padding-bottom: 27.5625%; }
+    .video-embed { width: 100%; padding-bottom: 56.25%; }
+    .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
     @media (max-width: 768px) {
-      .video-embed { width: 100%; padding-bottom: 56.25%; }
+      .video-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -125,9 +126,9 @@
         return;
       }
 
-      var html = '';
+      var html = '<div class="video-grid">';
       list.forEach(function (v) {
-        html += '<div class="animate-on-scroll" style="margin-bottom:3.5rem;border-bottom:1px solid var(--color-border);padding-bottom:3.5rem;">';
+        html += '<div class="animate-on-scroll" style="padding-bottom:1rem;">';
 
         // Name + date above video
         if (v.date) {
@@ -156,11 +157,9 @@
 
         html += '</div>';
       });
+      html += '</div>';
 
-      // Remove border from last item
       container.innerHTML = html;
-      var items = container.querySelectorAll('[style*="border-bottom"]');
-      if (items.length) items[items.length - 1].style.borderBottom = 'none';
 
       if (typeof initScrollAnimations === 'function') initScrollAnimations(container);
     }
