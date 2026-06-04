@@ -1,6 +1,6 @@
 // Set NOTION_API_KEY in Netlify dashboard → Site settings → Environment variables
 const NOTION_KEY = process.env.NOTION_API_KEY;
-const DB_ID      = "REPLACE_WITH_VIDEOS_DATABASE_ID";
+const DB_ID      = "37576fc4-5495-80a8-8f17-de4fe77d714d";
 
 function getYouTubeId(url) {
   if (!url) return null;
