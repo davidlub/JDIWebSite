@@ -45,9 +45,10 @@ exports.handler = async function () {
         : null;
       const jhbQuicket = props['Jhb Quiket']?.url ?? null;
       const ctQuicket  = props['CT Quiket']?.url  ?? null;
-      const blurb      = (props.Blurb?.rich_text ?? []).map(t => t.plain_text).join('');
+      const blurb          = (props.Blurb?.rich_text ?? []).map(t => t.plain_text).join('');
+      const showOnHomePage = props.ShowOnHomePage?.checkbox ?? false;
 
-      return { name, date, imageUrl, jhbQuicket, ctQuicket, blurb };
+      return { name, date, imageUrl, jhbQuicket, ctQuicket, blurb, showOnHomePage };
     }).filter(e => e.name);
 
     return {

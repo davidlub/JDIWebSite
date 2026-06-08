@@ -244,9 +244,10 @@
     fetch('/.netlify/functions/events')
       .then(function(r) { return r.json(); })
       .then(function(events) {
-        if (events && events.length && events[0].imageUrl) {
+        var featured = events && events.find(function(e) { return e.showOnHomePage && e.imageUrl; });
+        if (featured) {
           var img = document.getElementById('hero-event-img');
-          if (img) { img.src = events[0].imageUrl; img.alt = events[0].name || 'Upcoming JDI event'; }
+          if (img) { img.src = featured.imageUrl; img.alt = featured.name || 'Upcoming JDI event'; }
         }
       })
       .catch(function() {});
