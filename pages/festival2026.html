@@ -5,7 +5,7 @@
   <link rel="icon" type="image/png" href="../images/jdilogo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Festival of Dangerous Ideas 2026 — Jewish Democratic Initiative SA</title>
-  <meta name="description" content="Program for the JDI Festival of Dangerous Ideas 2026 — a day of bold conversations, challenging perspectives, and courageous dialogue." />
+  <meta name="description" content="Programme for the JDI Festival of Dangerous Ideas 2026 — a day of bold conversations, challenging perspectives, and courageous dialogue." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
@@ -48,7 +48,7 @@
       </nav>
       <span class="section-label">Coming Soon</span>
       <h1>Festival of Dangerous Ideas 2026</h1>
-      <p class="lead">Bold conversations, challenging perspectives, and courageous dialogue. A day of ideas that matter.</p>
+      <p class="lead">Our annual weekend festival is the highlight of the JDI calendar, presented simultaneously at venues in Cape Town and Johannesburg. This year the dates are Saturday July 18th and Sunday July 19th.</p>
     </div>
   </section>
 
@@ -56,12 +56,12 @@
   <section class="section">
     <div class="container">
       <div class="section-header centered" style="margin-bottom:3rem;">
-        <span class="section-label">Program</span>
+        <span class="section-label">Programme</span>
         <h2 class="section-title">What's On</h2>
-        <p class="section-desc">The full program for the Festival of Dangerous Ideas 2026.</p>
+        <p class="section-desc">The full programme for the Festival of Dangerous Ideas 2026.</p>
       </div>
-      <div id="fdi-program">
-        <p class="stmt-loading" style="color:var(--color-text-muted);padding:2rem 0;">Loading program…</p>
+      <div id="fdi-programme">
+        <p class="stmt-loading" style="color:var(--color-text-muted);padding:2rem 0;">Loading programme…</p>
       </div>
     </div>
   </section>
@@ -115,10 +115,10 @@
       return (str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
-    function renderProgram(items) {
-      var container = document.getElementById('fdi-program');
+    function renderProgramme(items) {
+      var container = document.getElementById('fdi-programme');
       if (!items.length) {
-        container.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;">Program details coming soon. Please check back shortly.</p>';
+        container.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;">Programme details coming soon. Please check back shortly.</p>';
         return;
       }
 
@@ -170,10 +170,10 @@
 
     fetch('/.netlify/functions/fdi2026')
       .then(function (r) { return r.json(); })
-      .then(renderProgram)
+      .then(renderProgramme)
       .catch(function () {
-        document.getElementById('fdi-program').innerHTML =
-          '<p style="color:var(--color-text-muted);padding:2rem 0;">Unable to load the program at this time. Please try again later.</p>';
+        document.getElementById('fdi-programme').innerHTML =
+          '<p style="color:var(--color-text-muted);padding:2rem 0;">Unable to load the programme at this time. Please try again later.</p>';
       });
   }());
   </script>
