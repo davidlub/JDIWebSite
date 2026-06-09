@@ -39,12 +39,13 @@ exports.handler = async function () {
       const name        = titleParts.length ? titleParts[0].plain_text : "";
       const slot        = (props.Slot?.rich_text ?? []).map(t => t.plain_text).join('');
       const description = (props.Description?.rich_text ?? []).map(t => t.plain_text).join('');
+      const title       = (props.Title?.rich_text ?? []).map(t => t.plain_text).join('');
       const imgFiles    = props.Image?.files ?? [];
       const imageUrl    = imgFiles.length
         ? (imgFiles[0].file?.url ?? imgFiles[0].external?.url ?? null)
         : null;
 
-      return { name, slot, description, imageUrl };
+      return { name, title, slot, description, imageUrl };
     }).filter(e => e.name);
 
     return {
