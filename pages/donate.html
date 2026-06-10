@@ -74,7 +74,7 @@
             </div>
             <div class="form-group" style="margin-top:.75rem;">
               <label for="custom-amount">Custom Amount (ZAR)</label>
-              <input type="number" id="custom-amount" placeholder="e.g. 750" min="10" value="250" />
+              <input type="number" id="custom-amount" name="amount" placeholder="e.g. 750" min="10" value="250" />
             </div>
           </div>
 
@@ -83,32 +83,34 @@
             <button class="amount-btn" style="flex:1;" id="monthly-btn">Monthly</button>
           </div>
 
-          <form class="jdi-form" id="donate-form">
+          <form id="donate-form" name="donate" data-netlify="true">
+            <input type="hidden" name="form-name" value="donate" />
+            <input type="hidden" id="donate-frequency" name="frequency" value="Once-off" />
             <div class="grid-2" style="gap:1rem;">
               <div class="form-group">
                 <label>First Name *</label>
-                <input id="donate-first" type="text" placeholder="First name" required />
+                <input id="donate-first" name="first-name" type="text" placeholder="First name" required />
               </div>
               <div class="form-group">
                 <label>Last Name *</label>
-                <input id="donate-last" type="text" placeholder="Last name" required />
+                <input id="donate-last" name="last-name" type="text" placeholder="Last name" required />
               </div>
             </div>
             <div class="form-group">
               <label>Email Address *</label>
-              <input id="donate-email" type="email" placeholder="you@example.com" required />
+              <input id="donate-email" name="email" type="email" placeholder="you@example.com" required />
             </div>
             <div class="form-group">
               <label>Phone Number</label>
-              <input id="donate-phone" type="tel" placeholder="+27 xx xxx xxxx" />
+              <input id="donate-phone" name="phone" type="tel" placeholder="+27 xx xxx xxxx" />
             </div>
             <div class="form-group">
               <label>Message (optional)</label>
-              <textarea id="donate-message" placeholder="Add a note to your donation…" style="min-height:70px;"></textarea>
+              <textarea id="donate-message" name="message" placeholder="Add a note to your donation…" style="min-height:70px;"></textarea>
             </div>
             <div class="form-group">
               <label style="display:flex;align-items:flex-start;gap:.5rem;cursor:pointer;">
-                <input id="donate-newsletter" type="checkbox" style="width:auto;margin-top:.2rem;" checked />
+                <input id="donate-newsletter" name="newsletter" type="checkbox" value="yes" style="width:auto;margin-top:.2rem;" checked />
                 <span style="font-size:.85rem;font-weight:400;color:var(--color-text-muted);">Subscribe me to the JDI newsletter</span>
               </label>
             </div>
@@ -204,47 +206,53 @@
 
   <script src="../js/main.js"></script>
   <script>
-    // Once/Monthly toggle
-    const onceBtn = document.getElementById('once-btn');
-    const monthlyBtn = document.getElementById('monthly-btn');
+    // Once/Monthly toggle — also update hidden frequency field
+    var onceBtn    = document.getElementById('once-btn');
+    var monthlyBtn = document.getElementById('monthly-btn');
+    var freqField  = document.getElementById('donate-frequency');
     if (onceBtn && monthlyBtn) {
-      onceBtn.addEventListener('click', () => {
+      onceBtn.addEventListener('click', function () {
         onceBtn.classList.add('active');
         monthlyBtn.classList.remove('active');
+        if (freqField) freqField.value = 'Once-off';
       });
-      monthlyBtn.addEventListener('click', () => {
+      monthlyBtn.addEventListener('click', function () {
         monthlyBtn.classList.add('active');
         onceBtn.classList.remove('active');
+        if (freqField) freqField.value = 'Monthly';
       });
     }
 
-    // Donate Now — open mailto with form details
+    // Donate Now — submit to Netlify Forms via fetch
     var donateForm = document.getElementById('donate-form');
     if (donateForm) {
-      donateForm.addEventListener('submit', function () {
-        var amount   = document.getElementById('custom-amount') ? document.getElementById('custom-amount').value : '';
-        var freq     = (document.getElementById('monthly-btn') && document.getElementById('monthly-btn').classList.contains('active')) ? 'Monthly' : 'Once-off';
-        var first    = document.getElementById('donate-first').value;
-        var last     = document.getElementById('donate-last').value;
-        var email    = document.getElementById('donate-email').value;
-        var phone    = document.getElementById('donate-phone').value;
-        var message  = document.getElementById('donate-message').value;
-        var newsletter = document.getElementById('donate-newsletter').checked ? 'Yes' : 'No';
+      donateForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = donateForm.querySelector('button[type="submit"]');
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
 
-        var subject = 'JDI Donation — R' + amount + ' (' + freq + ')';
-        var body    = 'Name: ' + first + ' ' + last + '\n'
-                    + 'Email: ' + email + '\n'
-                    + (phone ? 'Phone: ' + phone + '\n' : '')
-                    + 'Amount: R' + amount + '\n'
-                    + 'Frequency: ' + freq + '\n'
-                    + 'Newsletter: ' + newsletter + '\n'
-                    + (message ? '\nMessage:\n' + message : '');
-
-        window.location.href = 'mailto:davidjlubinsky@gmail.com'
-          + '?subject=' + encodeURIComponent(subject)
-          + '&body=' + encodeURIComponent(body);
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(new FormData(donateForm)).toString()
+        })
+        .then(function () {
+          btn.textContent = 'Thank you!';
+          setTimeout(function () {
+            btn.textContent = 'Donate Now →';
+            btn.disabled = false;
+            donateForm.reset();
+          }, 4000);
+        })
+        .catch(function () {
+          btn.textContent = 'Donate Now →';
+          btn.disabled = false;
+          alert('There was a problem submitting your donation. Please try again or email us directly.');
+        });
       });
     }
+
   </script>
 </body>
 </html>
