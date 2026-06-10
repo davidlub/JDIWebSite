@@ -207,15 +207,6 @@
 
   <script src="../js/main.js"></script>
   <script>
-    // Sync visible amount input → hidden amount field inside the form
-    var customAmount = document.getElementById('custom-amount');
-    var hiddenAmount = document.getElementById('donate-amount');
-    if (customAmount && hiddenAmount) {
-      customAmount.addEventListener('input', function () {
-        hiddenAmount.value = customAmount.value;
-      });
-    }
-
     // Once/Monthly toggle — also update hidden frequency field
     var onceBtn    = document.getElementById('once-btn');
     var monthlyBtn = document.getElementById('monthly-btn');
@@ -238,15 +229,18 @@
     if (donateForm) {
       donateForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        if (customAmount && hiddenAmount) hiddenAmount.value = customAmount.value;
         var btn = donateForm.querySelector('button[type="submit"]');
         btn.textContent = 'Sending…';
         btn.disabled = true;
 
+        var formData = new FormData(donateForm);
+        var amountInput = document.getElementById('custom-amount');
+        if (amountInput) formData.set('amount', amountInput.value);
+
         fetch('/pages/donate.html', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(new FormData(donateForm)).toString()
+          body: new URLSearchParams(formData).toString()
         })
         .then(function () {
           btn.textContent = 'Thank you!';
