@@ -83,7 +83,7 @@
             <button class="amount-btn" style="flex:1;" id="monthly-btn">Monthly</button>
           </div>
 
-          <form id="donate-form" name="donate" data-netlify="true">
+          <form id="donate-form" name="donate" method="POST" data-netlify="true" netlify>
             <input type="hidden" name="form-name" value="donate" />
             <input type="hidden" id="donate-frequency" name="frequency" value="Once-off" />
             <div class="grid-2" style="gap:1rem;">
@@ -232,7 +232,7 @@
         btn.textContent = 'Sending…';
         btn.disabled = true;
 
-        fetch('/', {
+        fetch('/pages/donate.html', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams(new FormData(donateForm)).toString()
