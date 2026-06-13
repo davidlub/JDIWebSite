@@ -131,22 +131,18 @@
 
     function getFilteredEvents() {
       var t = todayStr();
-      var included = {};
       var result = [];
-      activeFilters.forEach(function (f) {
-        allEvents.forEach(function (ev, i) {
-          if (included[i]) return;
-          if (f === 'upcoming' && (!ev.date || ev.date >= t)) { included[i] = true; result.push(ev); }
-          if (f !== 'upcoming' && ev.date && ev.date.slice(0, 4) === f) { included[i] = true; result.push(ev); }
-        });
+      allEvents.forEach(function (ev) {
+        var isUpcoming = !ev.date || ev.date >= t;
+        if (activeFilters.indexOf('upcoming') !== -1 && isUpcoming) result.push(ev);
+        else if (activeFilters.indexOf('previous') !== -1 && !isUpcoming) result.push(ev);
       });
-      // Sort: upcoming events ascending, past events descending, upcoming shown first
-      var t2 = todayStr();
-      var upcoming = result.filter(function (e) { return !e.date || e.date >= t2; });
-      var past     = result.filter(function (e) { return e.date && e.date < t2; });
-      upcoming.sort(function (a, b) { return (a.date || '').localeCompare(b.date || ''); });
-      past.sort(function (a, b)     { return (b.date || '').localeCompare(a.date || ''); });
-      return upcoming.concat(past);
+      if (activeFilters.indexOf('upcoming') !== -1) {
+        result.sort(function (a, b) { return (a.date || '').localeCompare(b.date || ''); });
+      } else {
+        result.sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
+      }
+      return result;
     }
 
     function pillStyle(active) {
@@ -157,12 +153,10 @@
     }
 
     function renderPills() {
-      var yearSet = {};
-      allEvents.forEach(function (ev) { if (ev.date) yearSet[ev.date.slice(0, 4)] = true; });
-      var years = Object.keys(yearSet).sort().reverse();
-
-      var pills = [{ key: 'upcoming', label: 'Upcoming events' }];
-      years.forEach(function (y) { pills.push({ key: y, label: y }); });
+      var pills = [
+        { key: 'upcoming',  label: 'Upcoming events' },
+        { key: 'previous',  label: 'Previous events' },
+      ];
 
       var filtersEl = document.getElementById('event-filters');
       filtersEl.innerHTML = pills.map(function (p) {
@@ -187,10 +181,10 @@
       var list = getFilteredEvents();
 
       if (!list.length) {
-        var upcomingOnly = activeFilters.length === 1 && activeFilters[0] === 'upcoming';
-        container.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;">'
-          + (upcomingOnly ? 'There are no scheduled events at this time. Please check back soon.'
-                          : 'No events found for the selected filters.') + '</p>';
+        var msg = activeFilters.indexOf('upcoming') !== -1 && activeFilters.indexOf('previous') === -1
+          ? 'There are no scheduled events at this time. Please check back soon.'
+          : 'No events found.';
+        container.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;">' + msg + '</p>';
         return;
       }
 
