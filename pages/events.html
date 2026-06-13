@@ -137,11 +137,7 @@
         if (activeFilters.indexOf('upcoming') !== -1 && isUpcoming) result.push(ev);
         else if (activeFilters.indexOf('previous') !== -1 && !isUpcoming) result.push(ev);
       });
-      if (activeFilters.indexOf('upcoming') !== -1) {
-        result.sort(function (a, b) { return (a.date || '').localeCompare(b.date || ''); });
-      } else {
-        result.sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
-      }
+      result.sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
       return result;
     }
 
