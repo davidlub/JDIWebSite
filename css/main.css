@@ -178,7 +178,7 @@ p:last-child { margin-bottom: 0; }
   transition: box-shadow var(--transition);
 }
 .navbar.scrolled { box-shadow: var(--shadow-md); }
-.navbar .container { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+.navbar .container { height: 100%; display: flex; align-items: center; justify-content: space-between; max-width: none; padding: 0 1.5rem; }
 
 .nav-logo {
   display: flex;
@@ -212,15 +212,17 @@ p:last-child { margin-bottom: 0; }
 .nav-links {
   display: flex;
   align-items: center;
-  gap: .25rem;
+  gap: .1rem;
+  flex-wrap: nowrap;
 }
 .nav-links a {
-  padding: .5rem .85rem;
+  padding: .5rem .55rem;
   border-radius: var(--radius-sm);
-  font-size: .9rem;
+  font-size: .82rem;
   font-weight: 500;
   color: var(--color-text);
   transition: all var(--transition);
+  white-space: nowrap;
 }
 .nav-links a:hover,
 .nav-links a.active {
