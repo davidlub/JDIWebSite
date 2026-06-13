@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/png" href="../images/jdilogo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Statements — Jewish Democratic Initiative SA</title>
-  <meta name="description" content="Official statements from the Jewish Democratic Initiative on Israeli policy, Palestinian rights, South African politics, and human rights issues." />
+  <title>Resources — Jewish Democratic Initiative SA</title>
+  <meta name="description" content="Resources from the Jewish Democratic Initiative — documents, reports, and background reading on Israeli policy, Palestinian rights, and South African Jewish community issues." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
@@ -30,8 +30,8 @@
         <li><a href="events.html">Events</a></li>
         <li><a href="festival2026.html">Festival 2026</a></li>
         <li><a href="videos.html">Videos</a></li>
-        <li><a href="statements.html" class="active">Statements</a></li>
-        <li><a href="resources.html">Resources</a></li>
+        <li><a href="statements.html">Statements</a></li>
+        <li><a href="resources.html" class="active">Resources</a></li>
         <li><a href="get-involved.html">Get Involved</a></li>
         <li><a href="donate.html" class="btn btn-primary btn-sm">Donate</a></li>
       </ul>
@@ -45,11 +45,11 @@
   <section class="page-hero">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="../index.html">Home</a><span class="sep">/</span><span>Statements</span>
+        <a href="../index.html">Home</a><span class="sep">/</span><span>Resources</span>
       </nav>
-      <span class="section-label">Official Positions</span>
-      <h1>JDI Statements</h1>
-      <p class="lead">Our official statements on Israeli policy, Palestinian rights, South African political issues, and global human rights.</p>
+      <span class="section-label">Background Reading</span>
+      <h1>JDI Resources</h1>
+      <p class="lead">Documents, reports, and background reading to deepen your understanding of the issues JDI works on.</p>
     </div>
   </section>
 
@@ -57,28 +57,16 @@
   <section class="section" style="padding-bottom:0;">
     <div class="container">
       <div class="search-bar" style="max-width:480px;">
-        <input type="search" id="stmt-search" placeholder="Search statements…" aria-label="Search statements" autocomplete="off" />
+        <input type="search" id="stmt-search" placeholder="Search resources…" aria-label="Search resources" autocomplete="off" />
         <button class="btn btn-primary" onclick="doSearch()">Search</button>
       </div>
     </div>
   </section>
 
-  <!-- STATEMENTS LIST -->
+  <!-- RESOURCES LIST -->
   <section class="section" style="padding-top:1.5rem;">
     <div class="container" id="statements-list">
-      <p class="stmt-loading" style="color:var(--color-text-muted);padding:2rem 0;">Loading statements…</p>
-    </div>
-  </section>
-
-  <!-- NEWSLETTER CTA -->
-  <section class="cta-band">
-    <div class="container">
-      <h2>Get Statements Delivered to Your Inbox</h2>
-      <p>Subscribe to receive JDI statements and updates as soon as they are published.</p>
-      <form class="newsletter-form">
-        <input type="email" placeholder="Your email address" required />
-        <button type="submit" class="btn btn-primary">Subscribe</button>
-      </form>
+      <p class="stmt-loading" style="color:var(--color-text-muted);padding:2rem 0;">Loading resources…</p>
     </div>
   </section>
 
@@ -87,7 +75,6 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          
           <p>An independent Jewish voice in South Africa, advocating for social justice, democracy, and a peaceful resolution to the Israeli-Palestinian conflict.</p>
           <div class="social-links">
             <a href="http://facebook.com/jdimovement" target="_blank" rel="noopener noreferrer" class="social-link">f</a>
@@ -105,6 +92,7 @@
           <h4>Engage</h4>
           <ul class="footer-links">
             <li><a href="statements.html">Statements</a></li>
+            <li><a href="resources.html">Resources</a></li>
             <li><a href="newsletter.html">Newsletter</a></li>
           </ul>
         </div>
@@ -113,7 +101,6 @@
           <ul class="footer-links">
             <li><a href="get-involved.html">Become a Member</a></li>
             <li><a href="get-involved.html#volunteer">Volunteer</a></li>
-            <li><a href="get-involved.html#events">Events</a></li>
             <li><a href="get-involved.html#contact">Contact Us</a></li>
           </ul>
         </div>
@@ -128,7 +115,7 @@
   <script src="../js/main.js"></script>
   <script>
   (function () {
-    var allStatements = [];
+    var allResources = [];
 
     function formatDate(iso) {
       if (!iso) return '';
@@ -144,14 +131,17 @@
       return 'Read Document';
     }
 
-    function renderStatements(list) {
+    function escHtml(str) {
+      return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function renderResources(list) {
       var container = document.getElementById('statements-list');
       if (!list.length) {
-        container.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;">No statements found.</p>';
+        container.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;">No resources found.</p>';
         return;
       }
 
-      // Group by year
       var byYear = {};
       list.forEach(function (s) {
         var year = s.date ? s.date.slice(0, 4) : 'Undated';
@@ -179,13 +169,11 @@
           html += '<div class="statement-item" style="display:flex;gap:1.5rem;padding:1.5rem 0;'
                 + 'border-bottom:1px solid var(--color-border);align-items:flex-start;">';
 
-          // Date column
           html += '<div style="min-width:120px;text-align:right;padding-top:.25rem;flex-shrink:0;">'
                 + '<span style="font-size:.8rem;font-weight:600;color:var(--color-gold);'
                 + 'text-transform:uppercase;letter-spacing:.05em;">'
                 + formatDate(s.date) + '</span></div>';
 
-          // Content column
           html += '<div style="flex:1;">';
           if (s.documentUrl) {
             html += '<h3 style="font-size:1.05rem;font-weight:600;margin:0 0 .5rem;line-height:1.4;">'
@@ -205,50 +193,43 @@
           }
           html += docLink;
           html += '</div>';
-
-          html += '</div>'; // .statement-item
+          html += '</div>';
         });
 
-        html += '</div>'; // .statements-year-group
+        html += '</div>';
       });
 
       container.innerHTML = html;
     }
 
-    function escHtml(str) {
-      return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-    }
-
     function doSearch() {
       var q = document.getElementById('stmt-search').value.trim().toLowerCase();
-      if (!q) { renderStatements(allStatements); return; }
-      var filtered = allStatements.filter(function (s) {
+      if (!q) { renderResources(allResources); return; }
+      var filtered = allResources.filter(function (s) {
         return (s.name + ' ' + s.summary).toLowerCase().includes(q);
       });
-      renderStatements(filtered);
+      renderResources(filtered);
     }
     window.doSearch = doSearch;
 
-    // Live search on keyup
     document.getElementById('stmt-search').addEventListener('keyup', function (e) {
       if (e.key === 'Enter') doSearch();
     });
 
-    // Fetch from Netlify function
-    fetch('/.netlify/functions/statements')
+    fetch('/.netlify/functions/resources')
       .then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         return res.json();
       })
       .then(function (data) {
-        allStatements = data;
-        renderStatements(allStatements);
+        allResources = data;
+        renderResources(allResources);
       })
       .catch(function (err) {
         document.getElementById('statements-list').innerHTML =
           '<p style="color:var(--color-text-muted);padding:2rem 0;">'
-          + 'Unable to load statements at this time. Please check back shortly.</p>';
-        console.error('Statements fetch error:', err);
+          + 'Unable to load resources at this time. Please check back shortly.</p>';
+        console.error('Resources fetch error:', err);
       });
   })();
   </script>

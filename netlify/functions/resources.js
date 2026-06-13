@@ -1,4 +1,3 @@
-// Set NOTION_API_KEY in Netlify dashboard → Site settings → Environment variables
 const NOTION_KEY = process.env.NOTION_API_KEY;
 const DB_ID      = "1e34bc26-c647-405e-9503-25d14c11e8a8";
 
@@ -9,7 +8,7 @@ exports.handler = async function () {
 
     do {
       const body = {
-        filter: { property: "Statements", checkbox: { equals: true } },
+        filter: { property: "Resources", checkbox: { equals: true } },
         sorts:  [{ property: "Date", direction: "descending" }],
         page_size: 100,
       };
@@ -35,7 +34,7 @@ exports.handler = async function () {
       cursor  = data.has_more ? data.next_cursor : undefined;
     } while (cursor);
 
-    const statements = results.map(page => {
+    const resources = results.map(page => {
       const props       = page.properties;
       const titleParts  = props.Name?.title ?? [];
       const name        = titleParts.length ? titleParts[0].plain_text : "";
@@ -52,7 +51,7 @@ exports.handler = async function () {
         : null;
 
       return { name, summary, date, documentUrl, docName, pictureUrl };
-    }).filter(s => s.name);
+    }).filter(r => r.name);
 
     return {
       statusCode: 200,
@@ -61,7 +60,7 @@ exports.handler = async function () {
         "Access-Control-Allow-Origin": "*",
         "Cache-Control":               "public, max-age=300",
       },
-      body: JSON.stringify(statements),
+      body: JSON.stringify(resources),
     };
   } catch (err) {
     return {
