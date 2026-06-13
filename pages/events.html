@@ -201,7 +201,9 @@
         html += '<div class="card-body" style="padding:1.5rem;">';
 
         if (ev.date) {
-          html += '<div style="margin-bottom:.75rem;"><span style="font-size:.8rem;font-weight:600;color:var(--color-gold);'
+          var isPast = ev.date < todayStr();
+          html += '<div style="margin-bottom:.75rem;"><span style="font-size:.8rem;font-weight:600;'
+                + 'color:' + (isPast ? 'var(--color-text-muted)' : 'var(--color-gold)') + ';'
                 + 'text-transform:uppercase;letter-spacing:.06em;">' + escHtml(formatDate(ev.date)) + '</span></div>';
         }
 
