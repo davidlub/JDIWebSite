@@ -5,14 +5,14 @@
 
 /* --- Design Tokens --- */
 :root {
-  --color-primary:       #1a3a6b;   /* deep democratic blue */
-  --color-primary-light: #2a5298;
+  --color-primary:       #6b1a1a;   /* deep maroon */
+  --color-primary-light: #982828;
   --color-gold:          #c8a84b;   /* Jewish gold */
   --color-gold-light:    #e8c97a;
   --color-green:         #2d6a4f;   /* SA connection */
   --color-accent:        #e74c3c;   /* alert / cta */
   --color-bg:            #f5f7fa;
-  --color-bg-dark:       #0f2040;
+  --color-bg-dark:       #2d0a0a;
   --color-surface:       #ffffff;
   --color-text:          #1a1a2e;
   --color-text-muted:    #5a6a7a;
@@ -251,7 +251,7 @@ p:last-child { margin-bottom: 0; }
    ============================================================ */
 .hero {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--color-bg-dark) 0%, #1a3a6b 60%, #2a5298 100%);
+  background: linear-gradient(135deg, var(--color-bg-dark) 0%, #6b1a1a 60%, #982828 100%);
   display: flex;
   align-items: center;
   padding-top: var(--nav-height);
