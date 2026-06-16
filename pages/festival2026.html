@@ -279,6 +279,20 @@
     </div>
   </section>
 
+  <!-- SPEAKERS / NOTION CONTENT -->
+  <section class="section" style="background:var(--color-bg);padding-top:2.5rem;">
+    <div class="container">
+      <div class="section-header centered" style="margin-bottom:3rem;">
+        <span class="section-label">Speakers &amp; Sessions</span>
+        <h2 class="section-title">Who's Speaking</h2>
+        <p class="section-desc">The full lineup for the Festival of Dangerous Ideas 2026.</p>
+      </div>
+      <div id="fdi-programme">
+        <p class="stmt-loading" style="color:var(--color-text-muted);padding:2rem 0;">Loading programme…</p>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
@@ -321,5 +335,73 @@
   </footer>
 
   <script src="../js/main.js"></script>
+  <script>
+  (function () {
+    function escHtml(str) {
+      return (str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function renderProgramme(items) {
+      var container = document.getElementById('fdi-programme');
+      if (!items.length) {
+        container.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;">Programme details coming soon. Please check back shortly.</p>';
+        return;
+      }
+
+      var html = '<div class="grid-3" style="gap:2rem;">';
+
+      items.forEach(function (item) {
+        html += '<div class="card animate-on-scroll" style="overflow:hidden;">';
+
+        if (item.imageUrl) {
+          html += '<div style="width:100%;aspect-ratio:4/3;overflow:hidden;background:#fff;">'
+                + '<img src="' + escHtml(item.imageUrl) + '" alt="' + escHtml(item.name) + '" '
+                + 'style="width:100%;height:100%;object-fit:contain;display:block;" /></div>';
+        } else {
+          html += '<div style="width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,var(--color-primary),var(--color-primary-light));'
+                + 'display:flex;align-items:center;justify-content:center;">'
+                + '<span style="font-size:3rem;">💡</span></div>';
+        }
+
+        html += '<div class="card-body" style="padding:1.5rem;">';
+
+        if (item.slot) {
+          html += '<div style="margin-bottom:.6rem;">'
+                + '<span style="font-size:.8rem;font-weight:600;color:var(--color-gold);'
+                + 'text-transform:uppercase;letter-spacing:.06em;">'
+                + escHtml(item.slot) + '</span></div>';
+        }
+
+        html += '<h3 style="font-size:1.15rem;font-weight:600;color:var(--color-primary);'
+              + 'line-height:1.4;margin:0 0 .35rem;">' + escHtml(item.name) + '</h3>';
+
+        if (item.title) {
+          html += '<p style="font-size:.95rem;font-weight:500;color:var(--color-text-muted);'
+                + 'font-style:italic;margin:0 0 .75rem;">' + escHtml(item.title) + '</p>';
+        }
+
+        if (item.description) {
+          html += '<p style="color:var(--color-text-muted);font-size:.9rem;line-height:1.6;margin:0;">'
+                + escHtml(item.description) + '</p>';
+        }
+
+        html += '</div></div>';
+      });
+
+      html += '</div>';
+      container.innerHTML = html;
+
+      if (typeof initScrollAnimations === 'function') initScrollAnimations();
+    }
+
+    fetch('/.netlify/functions/fdi2026')
+      .then(function (r) { return r.json(); })
+      .then(renderProgramme)
+      .catch(function () {
+        document.getElementById('fdi-programme').innerHTML =
+          '<p style="color:var(--color-text-muted);padding:2rem 0;">Unable to load the programme at this time. Please try again later.</p>';
+      });
+  }());
+  </script>
 </body>
 </html>
