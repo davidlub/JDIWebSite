@@ -53,17 +53,229 @@
     </div>
   </section>
 
-  <!-- PROGRAM -->
-  <section class="section">
+  <!-- SCHEDULE -->
+  <section class="section" style="padding-top:2.5rem;">
     <div class="container">
-      <div class="section-header centered" style="margin-bottom:3rem;">
-        <span class="section-label">Programme</span>
-        <h2 class="section-title">What's On</h2>
-        <p class="section-desc">The full programme for the Festival of Dangerous Ideas 2026.</p>
+
+      <div class="section-header centered" style="margin-bottom:2rem;">
+        <span class="section-label">Provisional Programme</span>
+        <h2 class="section-title">Festival Schedule</h2>
+        <p class="section-desc">Presented simultaneously at venues in Cape Town and Johannesburg. All timings are provisional and subject to change.</p>
       </div>
-      <div id="fdi-programme">
-        <p class="stmt-loading" style="color:var(--color-text-muted);padding:2rem 0;">Loading programme…</p>
+
+      <!-- Legend -->
+      <div style="display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-bottom:2.5rem;">
+        <span style="display:inline-flex;align-items:center;font-size:.8rem;font-weight:600;padding:.3rem .9rem;border-radius:999px;background:var(--color-primary);color:#fff;">JHB Live</span>
+        <span style="display:inline-flex;align-items:center;font-size:.8rem;font-weight:600;padding:.3rem .9rem;border-radius:999px;background:var(--color-green);color:#fff;">CPT Live</span>
+        <span style="display:inline-flex;align-items:center;font-size:.8rem;font-weight:600;padding:.3rem .9rem;border-radius:999px;background:#2563eb;color:#fff;">Zoom</span>
+        <span style="display:inline-flex;align-items:center;font-size:.8rem;font-weight:600;padding:.3rem .9rem;border-radius:999px;background:var(--color-text-muted);color:#fff;">All Venues</span>
       </div>
+
+      <style>
+        .sched-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+        @media (max-width: 768px) { .sched-grid { grid-template-columns: 1fr; } }
+        .sched-day { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); }
+        .sched-day-hdr { padding: 1.25rem 1.5rem; }
+        .sched-day-hdr h3 { margin: 0; color: #fff; font-size: 1.2rem; }
+        .sched-day-hdr p { margin: .3rem 0 0; color: rgba(255,255,255,.75); font-size: .82rem; }
+        .sched-row { display: flex; border-bottom: 1px solid var(--color-border); }
+        .sched-row:last-child { border-bottom: none; }
+        .sched-row.break { background: var(--color-bg); }
+        .sched-time { flex: 0 0 72px; padding: .95rem .75rem; font-size: .75rem; font-weight: 600; color: var(--color-text-muted); border-right: 2px solid var(--color-border); line-height: 1.5; }
+        .sched-body { flex: 1; padding: .85rem 1.1rem; }
+        .sched-badge { display: inline-block; font-size: .67rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; padding: .18rem .55rem; border-radius: 999px; margin-bottom: .4rem; color: #fff; }
+        .sched-badge.jhb  { background: var(--color-primary); }
+        .sched-badge.cpt  { background: var(--color-green); }
+        .sched-badge.zoom { background: #2563eb; }
+        .sched-badge.all  { background: var(--color-text-muted); }
+        .sched-title { font-weight: 600; color: var(--color-text); font-size: .93rem; line-height: 1.4; margin: 0 0 .2rem; }
+        .sched-row.break .sched-title { color: var(--color-text-muted); font-weight: 500; font-style: italic; }
+        .sched-desc { font-size: .83rem; color: var(--color-text-muted); line-height: 1.5; margin: 0; }
+      </style>
+
+      <div class="sched-grid">
+
+        <!-- ── SATURDAY 18 JULY ── -->
+        <div class="sched-day">
+          <div class="sched-day-hdr" style="background:var(--color-primary);">
+            <h3>Saturday 18 July</h3>
+            <p>Johannesburg &amp; Cape Town</p>
+          </div>
+
+          <div class="sched-row">
+            <div class="sched-time">14:00<br>14:15</div>
+            <div class="sched-body">
+              <span class="sched-badge jhb">JHB Live</span>
+              <p class="sched-title">Introduction</p>
+            </div>
+          </div>
+
+          <div class="sched-row">
+            <div class="sched-time">14:15<br>15:15</div>
+            <div class="sched-body">
+              <span class="sched-badge jhb">JHB Live</span>
+              <p class="sched-title">Avrum Burg on Mandela Day</p>
+              <p class="sched-desc">Does South Africa's transition to democracy have any resonance in Israel-Palestine?</p>
+            </div>
+          </div>
+
+          <div class="sched-row">
+            <div class="sched-time">15:30<br>16:30</div>
+            <div class="sched-body">
+              <span class="sched-badge jhb">JHB Live</span>
+              <p class="sched-title">Azhar Cachalia: Free Mandela / Free Marwan</p>
+              <p class="sched-desc">Arab Barghouti — a comparison of the campaigns</p>
+            </div>
+          </div>
+
+          <div class="sched-row break">
+            <div class="sched-time">16:30<br>16:45</div>
+            <div class="sched-body"><p class="sched-title">☕ Tea Break</p></div>
+          </div>
+
+          <div class="sched-row">
+            <div class="sched-time">16:45<br>18:00</div>
+            <div class="sched-body">
+              <span class="sched-badge all">All Venues</span>
+              <p class="sched-title">Scenes from the Divide — Group Discussion</p>
+              <p class="sched-desc">Mamdani in New York v. Israel — do the same issues divide families here in South Africa?</p>
+            </div>
+          </div>
+
+          <div class="sched-row">
+            <div class="sched-time">18:00<br>19:00</div>
+            <div class="sched-body">
+              <span class="sched-badge jhb">JHB Live</span>
+              <p class="sched-title">Open Session — TBA</p>
+            </div>
+          </div>
+
+          <div class="sched-row break">
+            <div class="sched-time">19:00<br>20:00</div>
+            <div class="sched-body"><p class="sched-title">🍽️ Dinner</p></div>
+          </div>
+
+          <div class="sched-row">
+            <div class="sched-time">20:00<br>20:45</div>
+            <div class="sched-body">
+              <span class="sched-badge zoom">Zoom</span>
+              <p class="sched-title">Mo Husseini — Filmmaker</p>
+              <p class="sched-desc">Film clips and discussion</p>
+            </div>
+          </div>
+        </div><!-- end Saturday -->
+
+        <!-- ── SUNDAY 19 JULY ── -->
+        <div class="sched-day">
+          <div class="sched-day-hdr" style="background:var(--color-green);">
+            <h3>Sunday 19 July</h3>
+            <p>Johannesburg &amp; Cape Town</p>
+          </div>
+
+          <div class="sched-row break">
+            <div class="sched-time">08:30<br>09:00</div>
+            <div class="sched-body"><p class="sched-title">📋 Registration</p></div>
+          </div>
+
+          <div class="sched-row">
+            <div class="sched-time">09:00<br>10:00</div>
+            <div class="sched-body">
+              <span class="sched-badge cpt">CPT Live</span>
+              <p class="sched-title">Zapiro</p>
+              <p class="sched-desc">Censoring pro-Palestine opinion internationally</p>
+            </div>
+          </div>
+
+          <div class="sched-row">
+            <div class="sched-time">10:00<br>11:00</div>
+            <div class="sched-body">
+              <span class="sched-badge zoom">Zoom</span>
+              <p class="sched-title">Sali Abed</p>
+              <p class="sched-desc">Fighting for Palestinian-Israeli rights</p>
+            </div>
+          </div>
+
+          <div class="sched-row break">
+            <div class="sched-time">11:00<br>11:30</div>
+            <div class="sched-body"><p class="sched-title">☕ Tea Break</p></div>
+          </div>
+
+          <div class="sched-row">
+            <div class="sched-time">11:30<br>12:30</div>
+            <div class="sched-body">
+              <span class="sched-badge zoom">Zoom</span>
+              <p class="sched-title">Rabbi Arik Ascherman</p>
+              <p class="sched-desc">Protective presence activism — how is that working out?</p>
+            </div>
+          </div>
+
+          <div class="sched-row break">
+            <div class="sched-time">12:30<br>13:30</div>
+            <div class="sched-body"><p class="sched-title">🍽️ Lunch</p></div>
+          </div>
+
+          <div class="sched-row">
+            <div class="sched-time">13:30<br>14:30</div>
+            <div class="sched-body">
+              <span class="sched-badge cpt">CPT Live</span>
+              <p class="sched-title">NextGen Panel</p>
+              <p class="sched-desc">Young people discussing their connection to the Jewish community and their path forward — opportunities, obstacles, and more</p>
+            </div>
+          </div>
+
+          <div class="sched-row">
+            <div class="sched-time">14:30<br>15:30</div>
+            <div class="sched-body">
+              <span class="sched-badge all">All Venues</span>
+              <p class="sched-title">"Listen from the Heart"</p>
+              <p class="sched-desc">Parents Circle movie and presentation by Jos</p>
+            </div>
+          </div>
+
+          <div class="sched-row break">
+            <div class="sched-time">15:30<br>16:00</div>
+            <div class="sched-body"><p class="sched-title">☕ Tea Break</p></div>
+          </div>
+
+          <div class="sched-row">
+            <div class="sched-time">16:00<br>17:00</div>
+            <div class="sched-body">
+              <span class="sched-badge zoom">Zoom</span>
+              <p class="sched-title">Samer Sinijlawi</p>
+              <p class="sched-desc">Activist for a shared society in Israel-Palestine</p>
+            </div>
+          </div>
+
+          <div class="sched-row">
+            <div class="sched-time">17:00<br>18:00</div>
+            <div class="sched-body">
+              <span class="sched-badge zoom">Zoom</span>
+              <p class="sched-title">Molly Crabapple</p>
+              <p class="sched-desc">The Bund — can it rise again?</p>
+            </div>
+          </div>
+
+          <div class="sched-row">
+            <div class="sched-time">18:00<br>19:00</div>
+            <div class="sched-body">
+              <span class="sched-badge cpt">CPT Live</span>
+              <p class="sched-title">Avrum Burg — Live Address</p>
+            </div>
+          </div>
+
+          <div class="sched-row">
+            <div class="sched-time">19:00<br>19:15</div>
+            <div class="sched-body">
+              <span class="sched-badge cpt">CPT Live</span>
+              <p class="sched-title">Thank You and Goodnight</p>
+            </div>
+          </div>
+        </div><!-- end Sunday -->
+
+      </div><!-- end .sched-grid -->
+
+      <p style="text-align:center;margin-top:2rem;color:var(--color-text-muted);font-size:.83rem;font-style:italic;">* Programme is provisional and subject to change</p>
+
     </div>
   </section>
 
@@ -102,80 +314,12 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2025 Jewish Democratic Initiative SA. All rights reserved.</span>
+        <span>© 2026 Jewish Democratic Initiative SA. All rights reserved.</span>
         <span>Registered Non-Profit Organisation, South Africa</span>
       </div>
     </div>
   </footer>
 
   <script src="../js/main.js"></script>
-  <script>
-  (function () {
-    function escHtml(str) {
-      return (str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    }
-
-    function renderProgramme(items) {
-      var container = document.getElementById('fdi-programme');
-      if (!items.length) {
-        container.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;">Programme details coming soon. Please check back shortly.</p>';
-        return;
-      }
-
-      var html = '<div class="grid-3" style="gap:2rem;">';
-
-      items.forEach(function (item) {
-        html += '<div class="card animate-on-scroll" style="overflow:hidden;">';
-
-        if (item.imageUrl) {
-          html += '<div style="width:100%;aspect-ratio:4/3;overflow:hidden;background:#fff;">'
-                + '<img src="' + escHtml(item.imageUrl) + '" alt="' + escHtml(item.name) + '" '
-                + 'style="width:100%;height:100%;object-fit:contain;display:block;" /></div>';
-        } else {
-          html += '<div style="width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,var(--color-primary),#2a5298);'
-                + 'display:flex;align-items:center;justify-content:center;">'
-                + '<span style="font-size:3rem;">💡</span></div>';
-        }
-
-        html += '<div class="card-body" style="padding:1.5rem;">';
-
-        if (item.slot) {
-          html += '<div style="margin-bottom:.6rem;">'
-                + '<span style="font-size:.8rem;font-weight:600;color:var(--color-gold);'
-                + 'text-transform:uppercase;letter-spacing:.06em;">'
-                + escHtml(item.slot) + '</span></div>';
-        }
-
-        html += '<h3 style="font-size:1.15rem;font-weight:600;color:var(--color-primary);'
-              + 'line-height:1.4;margin:0 0 .35rem;">' + escHtml(item.name) + '</h3>';
-
-        if (item.title) {
-          html += '<p style="font-size:.95rem;font-weight:500;color:var(--color-text-muted);'
-                + 'font-style:italic;margin:0 0 .75rem;">' + escHtml(item.title) + '</p>';
-        }
-
-        if (item.description) {
-          html += '<p style="color:var(--color-text-muted);font-size:.9rem;line-height:1.6;margin:0;">'
-                + escHtml(item.description) + '</p>';
-        }
-
-        html += '</div></div>';
-      });
-
-      html += '</div>';
-      container.innerHTML = html;
-
-      if (typeof initScrollAnimations === 'function') initScrollAnimations();
-    }
-
-    fetch('/.netlify/functions/fdi2026')
-      .then(function (r) { return r.json(); })
-      .then(renderProgramme)
-      .catch(function () {
-        document.getElementById('fdi-programme').innerHTML =
-          '<p style="color:var(--color-text-muted);padding:2rem 0;">Unable to load the programme at this time. Please try again later.</p>';
-      });
-  }());
-  </script>
 </body>
 </html>
