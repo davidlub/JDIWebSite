@@ -5,14 +5,14 @@
 
 /* --- Design Tokens --- */
 :root {
-  --color-primary:       #801515;   /* deep red-maroon */
-  --color-primary-light: #b02020;
+  --color-primary:       #E00C18;   /* JDI red */
+  --color-primary-light: #ff3344;
   --color-gold:          #c8a84b;   /* Jewish gold */
   --color-gold-light:    #e8c97a;
   --color-green:         #2d6a4f;   /* SA connection */
   --color-accent:        #e74c3c;   /* alert / cta */
   --color-bg:            #f5f7fa;
-  --color-bg-dark:       #3a0808;
+  --color-bg-dark:       #5a0008;
   --color-surface:       #ffffff;
   --color-text:          #1a1a2e;
   --color-text-muted:    #5a6a7a;
