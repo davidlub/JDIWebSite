@@ -4,19 +4,12 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/png" href="../images/jdilogo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Videos — Jewish Democratic Initiative SA</title>
-  <meta name="description" content="Videos from the Jewish Democratic Initiative — talks, panels, interviews and more." />
+  <title>Festival 2026 Speakers — Jewish Democratic Initiative SA</title>
+  <meta name="description" content="Meet the speakers at the JDI Festival of Dangerous Ideas 2026 — Saturday 18 and Sunday 19 July, Cape Town and Johannesburg." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/main.css" />
-  <style>
-    .video-embed { width: 100%; padding-bottom: 56.25%; }
-    .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-    @media (max-width: 768px) {
-      .video-grid { grid-template-columns: 1fr; }
-    }
-  </style>
 </head>
 <body>
 
@@ -42,7 +35,7 @@
             <li><a href="festival2026-speakers.html">Speakers</a></li>
           </ul>
         </li>
-        <li><a href="videos.html" class="active">Videos</a></li>
+        <li><a href="videos.html">Videos</a></li>
         <li><a href="statements.html">Statements</a></li>
         <li><a href="resources.html">Resources</a></li>
         <li><a href="get-involved.html">Get Involved</a></li>
@@ -58,18 +51,20 @@
   <section class="page-hero">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="../index.html">Home</a><span class="sep">/</span><span>Videos</span>
+        <a href="../index.html">Home</a><span class="sep">/</span><a href="festival2026-programme.html">Festival 2026</a><span class="sep">/</span><span>Speakers</span>
       </nav>
-      <span class="section-label">Watch &amp; Learn</span>
-      <h1>JDI Videos</h1>
-      <p class="lead">Talks, panel discussions, interviews and recordings from JDI events and media appearances.</p>
+      <span class="section-label">Festival of Dangerous Ideas 2026</span>
+      <h1>Speakers</h1>
+      <p class="lead">The full lineup of speakers and sessions for the Festival of Dangerous Ideas 2026 — Saturday 18 &amp; Sunday 19 July.</p>
     </div>
   </section>
 
-  <!-- VIDEOS LIST -->
-  <section class="section">
-    <div class="container" id="videos-list">
-      <p style="color:var(--color-text-muted);padding:2rem 0;">Loading videos…</p>
+  <!-- SPEAKERS / NOTION CONTENT -->
+  <section class="section" style="padding-top:2.5rem;">
+    <div class="container">
+      <div id="fdi-programme">
+        <p class="stmt-loading" style="color:var(--color-text-muted);padding:2rem 0;">Loading programme…</p>
+      </div>
     </div>
   </section>
 
@@ -117,75 +112,71 @@
   <script src="../js/main.js"></script>
   <script>
   (function () {
-    function formatDate(iso) {
-      if (!iso) return '';
-      var d = new Date(iso + 'T00:00:00');
-      return d.toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' });
-    }
-
     function escHtml(str) {
       return (str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
-    function renderVideos(list) {
-      var container = document.getElementById('videos-list');
-      if (!list.length) {
-        container.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;">No videos available at this time. Please check back soon.</p>';
+    function renderProgramme(items) {
+      var container = document.getElementById('fdi-programme');
+      if (!items.length) {
+        container.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;">Programme details coming soon. Please check back shortly.</p>';
         return;
       }
 
-      var html = '<div class="video-grid">';
-      list.forEach(function (v) {
-        html += '<div class="animate-on-scroll" style="padding-bottom:1rem;">';
+      var html = '<div class="grid-3" style="gap:2rem;">';
 
-        // Name + date above video
-        if (v.date) {
-          html += '<div style="margin-bottom:.5rem;">'
+      items.forEach(function (item) {
+        html += '<div class="card animate-on-scroll" style="overflow:hidden;">';
+
+        if (item.imageUrl) {
+          html += '<div style="width:100%;aspect-ratio:4/3;overflow:hidden;background:#fff;">'
+                + '<img src="' + escHtml(item.imageUrl) + '" alt="' + escHtml(item.name) + '" '
+                + 'style="width:100%;height:100%;object-fit:contain;display:block;" /></div>';
+        } else {
+          html += '<div style="width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,var(--color-primary),var(--color-primary-light));'
+                + 'display:flex;align-items:center;justify-content:center;">'
+                + '<span style="font-size:3rem;">💡</span></div>';
+        }
+
+        html += '<div class="card-body" style="padding:1.5rem;">';
+
+        if (item.slot) {
+          html += '<div style="margin-bottom:.6rem;">'
                 + '<span style="font-size:.8rem;font-weight:600;color:var(--color-gold);'
                 + 'text-transform:uppercase;letter-spacing:.06em;">'
-                + escHtml(formatDate(v.date)) + '</span></div>';
-        }
-        html += '<h2 style="font-family:var(--font-serif);color:var(--color-primary);font-size:1.4rem;'
-              + 'margin:0 0 1.25rem;line-height:1.3;">' + escHtml(v.name) + '</h2>';
-
-        // YouTube embed
-        html += '<div class="video-embed" style="position:relative;height:0;overflow:hidden;'
-              + 'border-radius:var(--radius-lg);background:#000;margin-bottom:1.25rem;">'
-              + '<iframe src="https://www.youtube.com/embed/' + escHtml(v.youtubeId) + '" '
-              + 'title="' + escHtml(v.name) + '" '
-              + 'style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" '
-              + 'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" '
-              + 'allowfullscreen></iframe></div>';
-
-        // Blurb below video
-        if (v.blurb) {
-          html += '<p style="color:var(--color-text-muted);font-size:.95rem;line-height:1.7;max-width:760px;">'
-                + escHtml(v.blurb) + '</p>';
+                + escHtml(item.slot) + '</span></div>';
         }
 
-        html += '</div>';
+        html += '<h3 style="font-size:1.15rem;font-weight:600;color:var(--color-primary);'
+              + 'line-height:1.4;margin:0 0 .35rem;">' + escHtml(item.name) + '</h3>';
+
+        if (item.title) {
+          html += '<p style="font-size:.95rem;font-weight:500;color:var(--color-text-muted);'
+                + 'font-style:italic;margin:0 0 .75rem;">' + escHtml(item.title) + '</p>';
+        }
+
+        if (item.description) {
+          html += '<p style="color:var(--color-text-muted);font-size:.9rem;line-height:1.6;margin:0;">'
+                + escHtml(item.description) + '</p>';
+        }
+
+        html += '</div></div>';
       });
-      html += '</div>';
 
+      html += '</div>';
       container.innerHTML = html;
 
-      if (typeof initScrollAnimations === 'function') initScrollAnimations(container);
+      if (typeof initScrollAnimations === 'function') initScrollAnimations();
     }
 
-    fetch('/.netlify/functions/videos')
-      .then(function (res) {
-        if (!res.ok) return res.json().then(function (e) {
-          throw new Error('HTTP ' + res.status + ': ' + (e.error || JSON.stringify(e)));
-        });
-        return res.json();
-      })
-      .then(function (data) { renderVideos(data); })
-      .catch(function (err) {
-        document.getElementById('videos-list').innerHTML =
-          '<p style="color:var(--color-text-muted);padding:2rem 0;">Unable to load videos at this time. Please check back shortly.</p>';
-        console.error('Videos fetch error:', err);
+    fetch('/.netlify/functions/fdi2026')
+      .then(function (r) { return r.json(); })
+      .then(renderProgramme)
+      .catch(function () {
+        document.getElementById('fdi-programme').innerHTML =
+          '<p style="color:var(--color-text-muted);padding:2rem 0;">Unable to load the programme at this time. Please try again later.</p>';
       });
-  })();
+  }());
   </script>
 </body>
 </html>

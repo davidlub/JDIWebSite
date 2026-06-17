@@ -23,12 +23,25 @@ if (navToggle && navLinks) {
   });
 }
 
+// --- Mobile dropdown toggles ---
+document.querySelectorAll('.nav-has-dropdown .nav-dropdown-toggle').forEach(toggle => {
+  toggle.addEventListener('click', function (e) {
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+      this.closest('.nav-has-dropdown').classList.toggle('open');
+    }
+  });
+});
+
 // --- Mark active nav link ---
 const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.nav-links a').forEach(a => {
-  const href = a.getAttribute('href');
-  if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+  const href = a.getAttribute('href') || '';
+  const hrefPage = href.split('/').pop();
+  if (hrefPage === currentPage || (currentPage === '' && hrefPage === 'index.html')) {
     a.classList.add('active');
+    const dropdown = a.closest('.nav-has-dropdown');
+    if (dropdown) dropdown.querySelector('.nav-dropdown-toggle').classList.add('active');
   }
 });
 
