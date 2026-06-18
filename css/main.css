@@ -5,14 +5,14 @@
 
 /* --- Design Tokens --- */
 :root {
-  --color-primary:       #E00C18;   /* JDI red */
-  --color-primary-light: #ff3344;
+  --color-primary:       #942A2A;   /* JDI red */
+  --color-primary-light: #b83535;
   --color-gold:          #c8a84b;   /* Jewish gold */
   --color-gold-light:    #e8c97a;
   --color-green:         #2d6a4f;   /* SA connection */
-  --color-accent:        #e74c3c;   /* alert / cta */
+  --color-accent:        #b83535;   /* alert / cta */
   --color-bg:            #f5f7fa;
-  --color-bg-dark:       #5a0008;
+  --color-bg-dark:       #6b1f1f;
   --color-surface:       #ffffff;
   --color-text:          #1a1a2e;
   --color-text-muted:    #5a6a7a;
@@ -289,7 +289,7 @@ p:last-child { margin-bottom: 0; }
    ============================================================ */
 .hero {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--color-bg-dark) 0%, #801515 60%, #b02020 100%);
+  background: linear-gradient(135deg, var(--color-bg-dark) 0%, #7a2525 60%, #942A2A 100%);
   display: flex;
   align-items: center;
   padding-top: var(--nav-height);
