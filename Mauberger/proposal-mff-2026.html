@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JDI SA — Proposal to the Mauerberger Foundation Fund 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ── Tokens ── */
+    :root {
+      --ground:       #f3f0e7;
+      --text:         #1a1a1a;
+      --text-muted:   #5a5a5a;
+      --accent:       #b8922a;
+      --accent-2:     #8f2828;
+      --dark:         #0d1f3c;
+      --dark-mid:     #1a3a6b;
+      --border:       rgba(184,146,42,.28);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Source Serif 4', Georgia, serif;
+      --font-ui:      'Inter', system-ui, sans-serif;
+      --measure:      780px;
+    }
+
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 17px; background: var(--ground); color: var(--text); }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.82;
+      background: var(--ground);
+    }
+
+    /* ── Containers ── */
+    .wrap {
+      max-width: var(--measure);
+      margin-inline: auto;
+      padding-inline: 2.5rem;
+    }
+
+    .wrap--wide {
+      max-width: calc(var(--measure) + 160px);
+      margin-inline: auto;
+      padding-inline: 2.5rem;
+    }
+
+    /* ── Cover ── */
+    .cover {
+      position: relative;
+      background: var(--dark);
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+      padding: 5rem 0 5rem;
+    }
+
+    /* The aesthetic risk: ghosted Hebrew */
+    .cover__tzedek {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      opacity: 0;
+      animation: fadeInHebrew 2.8s ease-in 0.4s forwards;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cover__tzedek { animation: none; opacity: 1; }
+    }
+
+    @keyframes fadeInHebrew {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .cover__tzedek span {
+      font-family: var(--font-display);
+      font-size: clamp(140px, 28vw, 380px);
+      font-weight: 300;
+      color: #fff;
+      opacity: .05;
+      letter-spacing: .1em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .cover__inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover__label {
+      font-family: var(--font-ui);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .cover__label::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .cover__org {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+      font-weight: 500;
+      color: rgba(255,255,255,.7);
+      letter-spacing: .04em;
+      margin-bottom: .5rem;
+    }
+
+    .cover__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 1.75rem;
+    }
+
+    .cover__title em {
+      color: var(--accent);
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    .cover__sub {
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: rgba(255,255,255,.6);
+      line-height: 1.7;
+      max-width: 560px;
+      margin-bottom: 3.5rem;
+    }
+
+    .cover__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+    }
+
+    .cover__meta-item { }
+    .cover__meta-item .label {
+      font-family: var(--font-ui);
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: .2rem;
+    }
+    .cover__meta-item .value {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.85);
+    }
+
+    .cover__verse {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 0;
+      right: 0;
+      z-index: 1;
+    }
+
+    .cover__verse p {
+      font-family: var(--font-display);
+      font-size: .9rem;
+      font-style: italic;
+      color: rgba(255,255,255,.35);
+      text-align: center;
+      letter-spacing: .03em;
+    }
+
+    /* ── Document body ── */
+    .doc {
+      background: var(--ground);
+    }
+
+    /* ── Sections ── */
+    .section {
+      padding-block: 4.5rem;
+    }
+
+    .section--tinted {
+      background: rgba(255,255,255,.7);
+    }
+
+    .section--dark {
+      background: var(--dark);
+      color: #fff;
+    }
+
+    .section--dark .section-eyebrow { color: var(--accent); }
+    .section--dark h2 { color: #fff; }
+    .section--dark p { color: rgba(255,255,255,.75); }
+    .section--dark .text-muted { color: rgba(255,255,255,.5); }
+
+    .section--red {
+      background: var(--accent-2);
+      color: #fff;
+    }
+
+    /* ── Typography ── */
+    .section-eyebrow {
+      font-family: var(--font-ui);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: .9rem;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.3;
+      margin-bottom: .75rem;
+    }
+
+    h4 {
+      font-family: var(--font-ui);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: .5rem;
+    }
+
+    p {
+      color: var(--text);
+      margin-bottom: 1.1rem;
+      font-size: 1rem;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    .lead {
+      font-size: 1.18rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .text-muted { color: var(--text-muted); }
+
+    strong { font-weight: 600; }
+
+    /* ── Gold rule ── */
+    .gold-rule {
+      border: none;
+      border-top: 1.5px solid var(--border);
+      margin-block: 0;
+    }
+
+    .gold-rule--thick {
+      border-top-width: 3px;
+      border-color: var(--accent);
+    }
+
+    /* ── Pull quote ── */
+    .pullquote {
+      border-left: 3px solid var(--accent);
+      padding-left: 1.75rem;
+      margin-block: 2.5rem;
+    }
+
+    .pullquote p {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--dark-mid);
+      margin-bottom: .6rem;
+    }
+
+    .pullquote cite {
+      font-family: var(--font-ui);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-style: normal;
+    }
+
+    /* ── Letter ── */
+    .letter {
+      max-width: 640px;
+    }
+
+    .letter__date {
+      font-family: var(--font-ui);
+      font-size: .82rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .letter__salutation {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+    }
+
+    .letter__sign {
+      margin-top: 2.5rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .letter__sign-name {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--dark);
+    }
+
+    .letter__sign-title {
+      font-family: var(--font-ui);
+      font-size: .78rem;
+      color: var(--text-muted);
+      margin-top: .2rem;
+    }
+
+    /* ── Summary boxes ── */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-block: 2.5rem;
+    }
+
+    .summary-box {
+      background: var(--ground);
+      padding: 1.75rem 1.5rem;
+    }
+
+    .summary-box .number {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+      display: block;
+      margin-bottom: .3rem;
+    }
+
+    .summary-box .desc {
+      font-family: var(--font-ui);
+      font-size: .78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      line-height: 1.4;
+    }
+
+    /* ── Timeline ── */
+    .timeline {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 108px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 108px 1fr;
+      gap: 0 2rem;
+      padding-block: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .timeline-item:last-child { border-bottom: none; }
+
+    .timeline-date {
+      padding-top: .15rem;
+      text-align: right;
+      padding-right: 2rem;
+    }
+
+    .timeline-date time {
+      font-family: var(--font-ui);
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--accent);
+      display: block;
+    }
+
+    .timeline-body { }
+
+    .timeline-body h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: .3rem;
+      line-height: 1.4;
+    }
+
+    .timeline-body p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    /* ── Festival speaker cards ── */
+    .speaker-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5px;
+      background: rgba(255,255,255,.1);
+      margin-block: 2.5rem;
+    }
+
+    .speaker-card {
+      background: rgba(255,255,255,.06);
+      padding: 2rem 1.75rem;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .speaker-card__slot {
+      font-family: var(--font-ui);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .6rem;
+      display: block;
+    }
+
+    .speaker-card__name {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: .3rem;
+    }
+
+    .speaker-card__role {
+      font-family: var(--font-ui);
+      font-size: .73rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 1rem;
+    }
+
+    .speaker-card__desc {
+      font-family: var(--font-body);
+      font-size: .88rem;
+      color: rgba(255,255,255,.65);
+      line-height: 1.65;
+      margin-bottom: 0;
+    }
+
+    /* ── Budget table ── */
+    .budget-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-block: 2rem;
+      font-size: .92rem;
+    }
+
+    .budget-table thead tr {
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .budget-table th {
+      font-family: var(--font-ui);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: .5rem .75rem .75rem;
+      text-align: left;
+    }
+
+    .budget-table th:last-child { text-align: right; }
+
+    .budget-table td {
+      padding: .75rem .75rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .budget-table td:last-child {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .budget-table tr.section-head td {
+      background: rgba(184,146,42,.08);
+      font-family: var(--font-ui);
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--accent);
+      padding-block: .5rem;
+      border-bottom: none;
+    }
+
+    .budget-table tr.subtotal td {
+      font-weight: 600;
+      color: var(--dark);
+      border-top: 1.5px solid var(--border);
+      border-bottom: 2px solid var(--border);
+    }
+
+    .budget-table tr.total td {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dark);
+      border-top: 2px solid var(--accent);
+      border-bottom: none;
+      padding-top: 1rem;
+    }
+
+    .budget-table tr.request td {
+      background: var(--dark);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .budget-table tr.income td {
+      color: var(--text-muted);
+      font-size: .88rem;
+    }
+
+    /* ── Governance grid ── */
+    .gov-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-block: 1.5rem;
+    }
+
+    .gov-card {
+      border-top: 2px solid var(--accent);
+      padding-top: .9rem;
+    }
+
+    .gov-card h4 {
+      margin-bottom: .4rem;
+      color: var(--dark);
+    }
+
+    .gov-card p {
+      font-size: .88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ── Committee list ── */
+    .committee-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      margin-block: 1rem;
+    }
+
+    .committee-list li {
+      display: flex;
+      gap: .75rem;
+      align-items: baseline;
+      font-size: .95rem;
+    }
+
+    .committee-list .role {
+      font-family: var(--font-ui);
+      font-size: .68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--accent);
+      flex-shrink: 0;
+      min-width: 100px;
+    }
+
+    /* ── Two-col text ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* ── Request callout ── */
+    .request-callout {
+      background: var(--dark);
+      color: #fff;
+      border-radius: 3px;
+      padding: 2.5rem 3rem;
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-block: 2.5rem;
+    }
+
+    .request-callout__amount {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--accent);
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .request-callout__desc {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.7);
+      line-height: 1.6;
+    }
+
+    /* ── Closing ── */
+    .closing {
+      background: var(--dark);
+      padding-block: 5rem;
+      text-align: center;
+    }
+
+    .closing h2 { color: #fff; margin-bottom: 1rem; }
+    .closing p { color: rgba(255,255,255,.65); max-width: 560px; margin-inline: auto; }
+
+    .closing__contact {
+      margin-top: 3rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3rem;
+    }
+
+    .closing__contact-item .label {
+      font-family: var(--font-ui);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: .25rem;
+    }
+
+    .closing__contact-item .value {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.9);
+    }
+
+    /* ── Footnote bar ── */
+    .footnote-bar {
+      background: #080f1e;
+      padding: 1.5rem 0;
+      text-align: center;
+    }
+
+    .footnote-bar p {
+      font-family: var(--font-ui);
+      font-size: .72rem;
+      color: rgba(255,255,255,.3);
+      letter-spacing: .06em;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 680px) {
+      .wrap { padding-inline: 1.5rem; }
+      .wrap--wide { padding-inline: 1.5rem; }
+      .two-col { grid-template-columns: 1fr; gap: 1.5rem; }
+      .timeline::before { display: none; }
+      .timeline-item { grid-template-columns: 1fr; gap: .25rem; }
+      .timeline-date { text-align: left; padding-right: 0; }
+      .request-callout { flex-direction: column; gap: .75rem; padding: 1.75rem; }
+      .request-callout__amount { font-size: 2.5rem; }
+      .budget-table { font-size: .82rem; }
+      .budget-table th, .budget-table td { padding: .5rem; }
+    }
+
+    /* ── Print ── */
+    @media print {
+      .cover { min-height: auto; padding: 3rem 0; }
+      .cover__verse { position: static; margin-top: 2rem; }
+      .section { page-break-inside: avoid; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       COVER
+  ══════════════════════════════════════════ -->
+  <header class="cover" role="banner">
+
+    <!-- Aesthetic risk: the Hebrew ghost -->
+    <div class="cover__tzedek" aria-hidden="true">
+      <span>צדק</span>
+    </div>
+
+    <div class="cover__inner wrap">
+
+      <div class="cover__label">Funding Proposal</div>
+
+      <div class="cover__org">Jewish Democratic Initiative SA</div>
+      <h1 class="cover__title">
+        A Proposal to the<br>
+        <em>Mauerberger<br>Foundation Fund</em>
+      </h1>
+
+      <p class="cover__sub">
+        In support of public education, independent Jewish advocacy,
+        and the Festival of Dangerous Ideas 2026 — presented simultaneously
+        in Cape Town and Johannesburg on the birthday of Nelson Mandela.
+      </p>
+
+      <div class="cover__meta">
+        <div class="cover__meta-item">
+          <span class="label">Submitted</span>
+          <span class="value">June 2026</span>
+        </div>
+        <div class="cover__meta-item">
+          <span class="label">Organisation</span>
+          <span class="value">JDI SA — NPO, est. 2017</span>
+        </div>
+        <div class="cover__meta-item">
+          <span class="label">Amount Requested</span>
+          <span class="value">R&thinsp;350,000</span>
+        </div>
+        <div class="cover__meta-item">
+          <span class="label">Contact</span>
+          <span class="value">info@jdisa.org</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cover__verse wrap">
+      <p>
+        <span lang="he">צֶדֶק צֶדֶק תִּרְדֹּף</span>
+        &ensp;—&ensp;
+        "Justice, justice you shall pursue." &ensp;Deuteronomy 16:20
+      </p>
+    </div>
+
+  </header>
+
+  <main class="doc">
+
+    <!-- ══════════════════════════════════════════
+         LETTER FROM THE CHAIR
+    ══════════════════════════════════════════ -->
+    <section class="section section--tinted" aria-labelledby="letter-heading">
+      <div class="wrap">
+
+        <span class="section-eyebrow" id="letter-heading">Letter from the Chair</span>
+
+        <article class="letter">
+
+          <p class="letter__date">June 2026</p>
+
+          <p>The Trustees<br>
+          Mauerberger Foundation Fund<br>
+          Cape Town</p>
+
+          <p class="letter__salutation" style="margin-top:1.75rem;">Dear Trustees,</p>
+
+          <p>The Jewish Democratic Initiative was founded nine years ago on a simple but demanding premise: that South African Jews have a responsibility to speak out when injustice is perpetrated in the name of the Jewish people — whether in Gaza, the West Bank, or here in our own community.</p>
+
+          <p>In those nine years, we have built something that did not exist before. We are an independent, volunteer-run organisation providing a home for Jews who believe in social justice, democratic pluralism, and a negotiated settlement in Israel-Palestine. Our members include lawyers, academics, artists, doctors and community leaders. Our work spans public statements, educational events, a daily news service (Chadashot), and our annual Festival of Dangerous Ideas.</p>
+
+          <p>This year's Festival — our second — takes place on Saturday 18 and Sunday 19 July, at the Hellenic Community Centre in Cape Town and the Killarney Country Club in Johannesburg. It falls on Nelson Mandela's birthday: a deliberate choice, because South Africa's own journey from apartheid to negotiated democracy is the model we hold up for Israel-Palestine.</p>
+
+          <p>The speaker line-up is extraordinary. <strong>Avrum Burg</strong>, former Speaker of the Knesset and interim President of Israel, will be with us in person for both days. <strong>Arab Barghouti</strong> — son of Marwan Barghouti, the man widely described as the Palestinian Mandela — will meet <strong>Azhar Cachalia</strong>, a founding member of the Free Mandela Campaign, in what will be one of the most resonant conversations in recent South African civil society history. They are joined by <strong>Sally Abed</strong> of Standing Together, <strong>Rabbi Arik Ascherman</strong>, <strong>Molly Crabapple</strong>, <strong>Jonathan Shapiro (Zapiro)</strong>, <strong>Mo Husseini</strong>, <strong>Samer Sinijlawi</strong>, and others.</p>
+
+          <p>We are grateful to the Mauerberger Foundation Fund for its previous support, and for the courage it showed in continuing that support when it came under sustained attack from within the Jewish community. We spoke out in public solidarity when that happened — not strategically, but because it was the right thing to do. The relationship between our organisations is grounded in shared values, and we are proud of that.</p>
+
+          <p>We present this proposal with confidence. The work is urgent, the speakers are ready, the venues are booked. What we need is your partnership.</p>
+
+          <div class="letter__sign">
+            <div class="letter__sign-name">Irwin Manoim</div>
+            <div class="letter__sign-title">Chair, Jewish Democratic Initiative SA</div>
+          </div>
+
+        </article>
+
+      </div>
+    </section>
+
+    <hr class="gold-rule gold-rule--thick" />
+
+    <!-- ══════════════════════════════════════════
+         EXECUTIVE SUMMARY
+    ══════════════════════════════════════════ -->
+    <section class="section" aria-labelledby="exec-heading">
+      <div class="wrap">
+
+        <span class="section-eyebrow" id="exec-heading">Executive Summary</span>
+        <h2>JDI SA in 2026: An Independent Voice at a Critical Moment</h2>
+
+        <p class="lead">The Jewish Democratic Initiative is South Africa's only independent progressive Jewish organisation — a non-profit founded by community members who believe that the Jewish prophetic tradition demands we speak out for justice, not just for Jews.</p>
+
+        <p>As the conflict in Gaza enters its third year, the divisions within Jewish communities worldwide have deepened. South Africa's Jewish community is no exception. The mainstream communal bodies have, in our assessment, failed to provide moral leadership; they have closed ranks around Israeli government policy, silenced dissent, and excluded those who hold different views. JDI exists to fill that void.</p>
+
+        <div class="summary-grid" role="list">
+          <div class="summary-box" role="listitem">
+            <span class="number">9</span>
+            <span class="desc">Years of independent advocacy, founded June 2017</span>
+          </div>
+          <div class="summary-box" role="listitem">
+            <span class="number">30+</span>
+            <span class="desc">Public statements published since October 7th 2023</span>
+          </div>
+          <div class="summary-box" role="listitem">
+            <span class="number">20+</span>
+            <span class="desc">Events and webinars held in the past 18 months</span>
+          </div>
+          <div class="summary-box" role="listitem">
+            <span class="number">2</span>
+            <span class="desc">Annual Festival of Dangerous Ideas — 2025 and 2026</span>
+          </div>
+        </div>
+
+        <p>For 2026, we request <strong>R&thinsp;350,000</strong> from the Mauerberger Foundation Fund. This funding will be directed toward the Festival of Dangerous Ideas 2026 and the ongoing operations that sustain our advocacy work throughout the year.</p>
+
+        <div class="pullquote">
+          <p>"In the JDI's end-of-year statement, we endorse the courage of the Mauerberger Foundation Fund, unfairly vilified by Jewish commentators. Over 80 years the Foundation has supported hundreds of social justice causes."</p>
+          <cite>JDI SA Statement, December 2025</cite>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="gold-rule" />
+
+    <!-- ══════════════════════════════════════════
+         ABOUT THE JDI
+    ══════════════════════════════════════════ -->
+    <section class="section section--tinted" aria-labelledby="about-heading">
+      <div class="wrap">
+
+        <span class="section-eyebrow" id="about-heading">About the Organisation</span>
+        <h2>Who We Are and What We Stand For</h2>
+
+        <div class="two-col">
+          <div>
+            <p class="lead">JDI is an umbrella organisation, not a monolith. Our members hold a range of views about Israel-Palestine, but are united in one core belief: that justice requires an honest, equitable, negotiated settlement in which all parties — Israeli and Palestinian — are represented.</p>
+            <p>We were founded in June 2017, the 50th anniversary of the Israeli occupation of the West Bank and Gaza, by a group of South African Jews who felt that the mainstream communal bodies no longer represented their values. Our founding was inspired by South Africa's own tradition of Jewish activism — the disproportionate Jewish contribution to the anti-apartheid struggle — and by the recognition that silence in the face of injustice is itself a choice.</p>
+            <p>We honour that tradition. We seek to re-connect the South African Jewish community to these roots.</p>
+          </div>
+          <div>
+            <p>JDI operates on a fully volunteer basis. All directors are unpaid. We are funded through member donations, event income, and the support of foundations like the Mauerberger Foundation Fund.</p>
+
+            <h3 style="margin-top:1.5rem;">The 2026 Committee</h3>
+            <ul class="committee-list">
+              <li>
+                <span class="role">National Chair</span>
+                <span>Irwin Manoim</span>
+              </li>
+              <li>
+                <span class="role">Cape Town</span>
+                <span>Basil Dubb, Sally Frankenthal, Barbara Miller, Raymond Schkolne</span>
+              </li>
+              <li>
+                <span class="role">Johannesburg</span>
+                <span>Anton Harber, Georgia Harber, David Lubinsky, Max Price</span>
+              </li>
+            </ul>
+
+            <p style="font-size:.88rem;color:var(--text-muted);margin-top:.75rem;">Directors are elected annually at a General Meeting open to all signed members. Sub-committees are formed as needed for specific projects.</p>
+
+            <h3 style="margin-top:1.5rem;">International Network</h3>
+            <p>JDI is a member of <strong>JLink International</strong>, a network of like-minded Jewish progressive organisations across the diaspora. This network amplifies our advocacy and connects us with leading thinkers in Israel-Palestine dialogue globally.</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top:2.5rem;">What JDI Does</h3>
+        <p>Our work falls into three overlapping areas:</p>
+
+        <div class="gov-grid" style="margin-top:1.25rem;">
+          <div class="gov-card">
+            <h4>Public Statements</h4>
+            <p>We publish statements on key events as they unfold — from Israeli policy decisions to South African politics — providing a Jewish progressive perspective in the public record.</p>
+          </div>
+          <div class="gov-card">
+            <h4>Education &amp; Events</h4>
+            <p>Webinars, panel discussions, film screenings, and our annual Festival of Dangerous Ideas — bringing voices to South African audiences that are rarely heard in mainstream communal spaces.</p>
+          </div>
+          <div class="gov-card">
+            <h4>Chadashot Service</h4>
+            <p>A free daily WhatsApp news digest covering Israel-Palestine and South African Jewry — sent to hundreds of subscribers, curated by our editorial team.</p>
+          </div>
+          <div class="gov-card">
+            <h4>Coalition Building</h4>
+            <p>We work alongside other progressive organisations — Jewish, Muslim, Christian, and secular — who share our commitment to peace, democratic values, and universal human rights.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="gold-rule" />
+
+    <!-- ══════════════════════════════════════════
+         ACTIVITIES 2025–2026
+    ══════════════════════════════════════════ -->
+    <section class="section" aria-labelledby="activities-heading">
+      <div class="wrap">
+
+        <span class="section-eyebrow" id="activities-heading">Our Track Record</span>
+        <h2>Activities and Events: 2025–2026</h2>
+
+        <p>The following timeline records our principal public activities over the past eighteen months. It demonstrates the breadth and consistency of our programming, and the quality of the voices we are able to convene.</p>
+
+        <nav class="timeline" aria-label="JDI activities timeline" style="margin-top:2.5rem;">
+
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <time datetime="2025-01">Jan 2025</time>
+            </div>
+            <div class="timeline-body">
+              <h3>Will the January Ceasefire Hold? — Ran Greenstein</h3>
+              <p>Israeli-born Wits sociologist Ran Greenstein predicted — correctly — that Israel would breach the January ceasefire. A webinar that proved prescient.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <time datetime="2025-02">Feb 2025</time>
+            </div>
+            <div class="timeline-body">
+              <h3>Statements: Elon Musk's Nazi Salute &amp; Chief Rabbi Goldstein</h3>
+              <p>JDI published two widely-read statements: on Musk's gesture at the Trump inauguration, and on Chief Rabbi Warren Goldstein's alignment with Trump and Musk without acknowledging their neo-fascist affiliations.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <time datetime="2025-03">Mar 2025</time>
+            </div>
+            <div class="timeline-body">
+              <h3>Film: The Viewing Booth / Is Gaza a Genocide? — Three Experts Debate</h3>
+              <p>A documentary about strongly Zionist viewers encountering critical social media, followed by a public debate on the genocide question between two Holocaust historians and a human rights lawyer.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <time datetime="2025-04">Apr 2025</time>
+            </div>
+            <div class="timeline-body">
+              <h3>JDI Haggadah for Passover</h3>
+              <p>We published our Haggadah — based on the traditional text, with meditations and commentaries connecting the themes of liberation to present-day Palestine. Distributed widely across the community.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <time datetime="2025-07">Jul 2025</time>
+            </div>
+            <div class="timeline-body">
+              <h3>First Festival of Dangerous Ideas — Cape Town &amp; Johannesburg</h3>
+              <p>Our inaugural two-day festival drew packed houses at both venues. Speakers included former Israeli diplomat Alon Liel, Sir Mick Davis, Caitlin Le Roith, and others. The format — simultaneous venues, live-streamed — proved highly effective and generated substantial media coverage.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <time datetime="2025-08">Aug 2025</time>
+            </div>
+            <div class="timeline-body">
+              <h3>Physicians for Human Rights on Gaza / Ittay Flescher: The Holy and the Broken</h3>
+              <p>Two events in August: Physicians for Human Rights spoke days after releasing their investigation into abuses in the Gaza health sector; Israeli peace activist Ittay Flescher launched his book in conversation with Anton Harber.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <time datetime="2025-11">Nov 2025</time>
+            </div>
+            <div class="timeline-body">
+              <h3>Film: No Other Land / Two Prominent Palestinians on Pathways to Peace</h3>
+              <p>The Oscar-winning documentary No Other Land — chronicling the destruction of a West Bank village — was screened publicly. Separately, two prominent Palestinian activists spoke about scenarios for breaking the cycle of violence.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <time datetime="2026-03">Mar 2026</time>
+            </div>
+            <div class="timeline-body">
+              <h3>Dennis Davis Debates Mark Oppenheimer</h3>
+              <p>Judge Dennis Davis, representing a progressive stance on Israel and Zionism, debated Advocate Mark Oppenheimer, a staunch defender of Israeli policy. A rare public confrontation of opposing views within the Jewish legal community.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <time datetime="2026-04">Apr 2026</time>
+            </div>
+            <div class="timeline-body">
+              <h3>First South African Screening: The Voice of Hind Rajab</h3>
+              <p>JDI was first in South Africa to screen the Oscar-nominated documentary about Hind Rajab, the five-year-old Palestinian girl killed while trapped in a car under Israeli fire. The screening was described by attendees as harrowing and essential.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <time datetime="2026-07">Jul 2026</time>
+            </div>
+            <div class="timeline-body">
+              <h3 style="color:var(--accent-2);">Festival of Dangerous Ideas 2026 — 18 &amp; 19 July</h3>
+              <p>Our second Festival. See Section 4 of this proposal for full details.</p>
+            </div>
+          </div>
+
+        </nav>
+
+        <h3 style="margin-top:3rem;">Selected Public Statements, 2025–2026</h3>
+        <p>The following statements represent the range and reach of our public advocacy. Each is published on our website (jdisa.org) and shared with our mailing list and on social media.</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-top:1.25rem;">
+
+          <div style="border-left:2px solid var(--accent);padding-left:1rem;">
+            <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:.2rem;font-family:var(--font-ui);letter-spacing:.05em;">Jan 2025</p>
+            <p style="font-size:.92rem;font-weight:600;color:var(--dark);margin-bottom:.25rem;">Statement for International Holocaust Memorial Day</p>
+            <p style="font-size:.84rem;color:var(--text-muted);margin-bottom:0;">On the 80th anniversary of Auschwitz, reflecting on the obligation to resist those who advocate revenge and violence as solutions.</p>
+          </div>
+
+          <div style="border-left:2px solid var(--accent);padding-left:1rem;">
+            <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:.2rem;font-family:var(--font-ui);letter-spacing:.05em;">Jan 2025</p>
+            <p style="font-size:.92rem;font-weight:600;color:var(--dark);margin-bottom:.25rem;">Statement on Elon Musk's Nazi Salute</p>
+            <p style="font-size:.84rem;color:var(--text-muted);margin-bottom:0;">Calling out Jewish leaders' cowardice in the face of Musk's gesture at the world's most-watched event.</p>
+          </div>
+
+          <div style="border-left:2px solid var(--accent);padding-left:1rem;">
+            <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:.2rem;font-family:var(--font-ui);letter-spacing:.05em;">Feb 2025</p>
+            <p style="font-size:.92rem;font-weight:600;color:var(--dark);margin-bottom:.25rem;">The Chief Rabbi Who Lost His Soul</p>
+            <p style="font-size:.84rem;color:var(--text-muted);margin-bottom:0;">Chief Rabbi Goldstein's alignment with Trump and Musk — praising them without acknowledging neo-fascist affiliations — represented a failure of Jewish moral leadership.</p>
+          </div>
+
+          <div style="border-left:2px solid var(--accent);padding-left:1rem;">
+            <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:.2rem;font-family:var(--font-ui);letter-spacing:.05em;">Nov 2025</p>
+            <p style="font-size:.92rem;font-weight:600;color:var(--dark);margin-bottom:.25rem;">A Jewish Contribution for Gaza Refugee Children</p>
+            <p style="font-size:.84rem;color:var(--text-muted);margin-bottom:0;">Calling on the Jewish community to join Muslim and Christian groups in supporting Gaza refugees who arrived in South Africa with nothing.</p>
+          </div>
+
+          <div style="border-left:2px solid var(--accent);padding-left:1rem;">
+            <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:.2rem;font-family:var(--font-ui);letter-spacing:.05em;">Dec 2025</p>
+            <p style="font-size:.92rem;font-weight:600;color:var(--dark);margin-bottom:.25rem;">We Endorse the Courage of the Mauerberger Foundation</p>
+            <p style="font-size:.84rem;color:var(--text-muted);margin-bottom:0;">In our year-end statement, publicly endorsing the Mauerberger Foundation Fund and defending its 80-year legacy of social justice funding against communal attacks.</p>
+          </div>
+
+          <div style="border-left:2px solid var(--accent);padding-left:1rem;">
+            <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:.2rem;font-family:var(--font-ui);letter-spacing:.05em;">Jun 2026</p>
+            <p style="font-size:.92rem;font-weight:600;color:var(--dark);margin-bottom:.25rem;">Statement on Youth Day: Israel's Own Soweto Parallel</p>
+            <p style="font-size:.84rem;color:var(--text-muted);margin-bottom:0;">Youth Day — commemorating the Soweto uprising — summons uncomfortable parallels with Israeli education systems for Jewish and Palestinian children in 2026.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="gold-rule" />
+
+    <!-- ══════════════════════════════════════════
+         FESTIVAL OF DANGEROUS IDEAS 2026
+    ══════════════════════════════════════════ -->
+    <section class="section section--dark" aria-labelledby="festival-heading">
+      <div class="wrap">
+
+        <span class="section-eyebrow" id="festival-heading">Centrepiece of Our 2026 Programme</span>
+        <h2>The Festival of Dangerous Ideas 2026</h2>
+
+        <div class="two-col" style="margin-bottom:3rem;">
+          <div>
+            <p class="lead" style="color:rgba(255,255,255,.85);">Our second Festival brings together the voices you will not hear at your shul, your dinner table, or your corporate gala — over two extraordinary days, simultaneously in Cape Town and Johannesburg.</p>
+            <p>The Festival takes place on Saturday 18 and Sunday 19 July — Nelson Mandela's birthday. This is a deliberate symbolic choice. JDI's core contention is that South Africa's own negotiated settlement, achieved against overwhelming odds through dialogue between sworn enemies, offers a genuine model for Israel-Palestine. Mandela's birthday is the right occasion to say so.</p>
+            <p>The underlying theme: <em>How do Jews and Palestinians break free of the spiral of violence and find peace?</em> We have chosen speakers who are neither propagandists nor comfortable — people who have paid a real price for their convictions and who refuse the scripts on offer from either side.</p>
+          </div>
+          <div>
+            <h4 style="color:rgba(255,255,255,.5);">Venues</h4>
+            <p style="margin-bottom:1.25rem;"><strong style="color:#fff;">Cape Town:</strong> Hellenic Community Centre, Mouille Point</p>
+            <p style="margin-bottom:1.25rem;"><strong style="color:#fff;">Johannesburg:</strong> Killarney Country Club, Houghton</p>
+
+            <h4 style="color:rgba(255,255,255,.5);margin-top:1.5rem;">Format</h4>
+            <p>Most sessions are live-streamed between the two venues. Some sessions are local. A lunch, a dinner, and teas are included. The audience at each venue can interact with speakers and, where configured, with the audience at the other venue.</p>
+
+            <h4 style="color:rgba(255,255,255,.5);margin-top:1.5rem;">Booking</h4>
+            <p>Tickets are available via Quicket. Delegates attend at the venue in their city; all sessions are visible at both.</p>
+          </div>
+        </div>
+
+        <h3 style="color:#fff;margin-bottom:1.5rem;">The Speakers</h3>
+
+        <div class="speaker-grid">
+
+          <article class="speaker-card">
+            <span class="speaker-card__slot">Saturday — 14:15 &amp; Sunday — Closing</span>
+            <div class="speaker-card__name">Avrum Burg</div>
+            <div class="speaker-card__role">Conscience of Israel</div>
+            <p class="speaker-card__desc">Once one of Israel's most influential political figures — former Speaker of the Knesset, interim President, chairman of the Jewish Agency — Avrum Burg has spent the last two decades as his country's most searching critic. He has called for Jews worldwide to petition the International Court of Justice over crimes against humanity in Gaza. He will appear in Johannesburg on Saturday and Cape Town on Sunday. His presence in South Africa on Mandela's birthday is itself a statement.</p>
+          </article>
+
+          <article class="speaker-card">
+            <span class="speaker-card__slot">Saturday — 15:30</span>
+            <div class="speaker-card__name">Arab Barghouti &amp; Azhar Cachalia</div>
+            <div class="speaker-card__role">Free Barghouti Campaign / Free Mandela Campaign</div>
+            <p class="speaker-card__desc">A session that exists only at JDI. Arab Barghouti — son of Marwan Barghouti, the imprisoned Palestinian leader widely described as "the Palestinian Mandela" — in dialogue with Azhar Cachalia, a founding member of South Africa's Free Mandela Campaign and former judge on the Supreme Court of Appeal. Two campaigns, two freedom fighters, one conversation about what liberation actually requires.</p>
+          </article>
+
+          <article class="speaker-card">
+            <span class="speaker-card__slot">Sunday — 10:00</span>
+            <div class="speaker-card__name">Sally Abed</div>
+            <div class="speaker-card__role">Co-Director, Standing Together</div>
+            <p class="speaker-card__desc">Co-director of Standing Together — Israel's largest grassroots movement of Jews and Arabs — which recently formed a political party to contest elections on a platform of partnership rather than division. Abed sits on the Haifa City Council. A Palestinian woman who recognises grief on both sides and insists that liberation and equality for all are not a compromise but the only way forward.</p>
+          </article>
+
+          <article class="speaker-card">
+            <span class="speaker-card__slot">Sunday — 11:30</span>
+            <div class="speaker-card__name">Rabbi Arik Ascherman</div>
+            <div class="speaker-card__role">Rabbi for Human Rights</div>
+            <p class="speaker-card__desc">For three decades, Ascherman has practised "protective presence" activism: physically shielding Palestinian farmers from settler violence. He has been stabbed, beaten, and arrested for this work. A recipient of the Gandhi Peace Prize, he insists that Israeli safety and Palestinian rights are not competing demands — they are the same struggle.</p>
+          </article>
+
+          <article class="speaker-card">
+            <span class="speaker-card__slot">Sunday — 09:00</span>
+            <div class="speaker-card__name">Jonathan Shapiro (Zapiro)</div>
+            <div class="speaker-card__role">South Africa's Most Celebrated Cartoonist</div>
+            <p class="speaker-card__desc">For three decades the country's most admired political cartoonist — and a pariah to many in his own Jewish community. Zapiro will speak about the silencing of images: how Israel-Palestine has become a "no-go" area for cartoonists at leading newspapers worldwide, as pro-Israel lobbying intimidates editors into censorship or dismissal.</p>
+          </article>
+
+          <article class="speaker-card">
+            <span class="speaker-card__slot">Saturday — 20:00</span>
+            <div class="speaker-card__name">Mo Husseini</div>
+            <div class="speaker-card__role">Palestinian Filmmaker &amp; Activist</div>
+            <p class="speaker-card__desc">A Palestinian-American who studied at UC Berkeley and cut his teeth at George Lucas's Industrial Light &amp; Magic. Since October 7th he has emerged as one of the most distinctive voices in the discourse — rejecting Hamas while insisting on Palestinian dignity. His viral "50 Completely True Things" reached hundreds of thousands across the political spectrum. He co-directed The Path Forward alongside Oscar-nominated Julie Cohen.</p>
+          </article>
+
+          <article class="speaker-card">
+            <span class="speaker-card__slot">Sunday — 16:00</span>
+            <div class="speaker-card__name">Samer Sinijlawi</div>
+            <div class="speaker-card__role">Palestinian Voice of Reform</div>
+            <p class="speaker-card__desc">Imprisoned at fifteen during the First Intifada, Sinijlawi emerged as a leading independent voice within Palestinian politics. Chairman of the Jerusalem Development Fund, he has challenged both the Palestinian Authority and Hamas, calling for democratic reforms and a pragmatic path to coexistence. A regular and popular speaker at JDI events.</p>
+          </article>
+
+          <article class="speaker-card">
+            <span class="speaker-card__slot">Sunday — 17:00</span>
+            <div class="speaker-card__name">Molly Crabapple</div>
+            <div class="speaker-card__role">Historian of the Jewish Left</div>
+            <p class="speaker-card__desc">Her latest book, Here Where We Live Is Our Country: The Story of the Jewish Bund, is a New York Times bestseller — a history of the mass socialist movement that organised millions of Eastern European Jews in the early 20th century and offered a vision of Jewish life rooted in diaspora, solidarity, and struggle rather than nationalism. A timely intervention into debates about what Jewish identity can and should mean.</p>
+          </article>
+
+          <article class="speaker-card">
+            <span class="speaker-card__slot">Saturday — 16:45</span>
+            <div class="speaker-card__name">Scenes From the Divide</div>
+            <div class="speaker-card__role">Film &amp; Discussion — Alison Klayman, Director</div>
+            <p class="speaker-card__desc">An intimate documentary short following a polarised Jewish community in the lead-up to the election of New York City mayor Zohran Mamdani. Directed by award-winning filmmaker Alison Klayman, the film steps directly into homes on both sides of the fracture. Screened separately in Cape Town and Johannesburg, each followed by discussion of how its themes resonate in our own community.</p>
+          </article>
+
+          <article class="speaker-card">
+            <span class="speaker-card__slot">Saturday — 18:00 (Cape Town)</span>
+            <div class="speaker-card__name">The Bad Jews Podcast</div>
+            <div class="speaker-card__role">Live Recording — Anthony Fish Hodgson &amp; Caitlin Le Roith</div>
+            <p class="speaker-card__desc">The cheekily named monthly podcast about Zionism, Jewish identity, and ideology — two articulate young anti-Zionists who don't agree with liberal Zionism. We've invited them to tell us why. Our audience are welcome to argue back. The session will be live-recorded at our Cape Town venue and streamed to Johannesburg.</p>
+          </article>
+
+          <article class="speaker-card">
+            <span class="speaker-card__slot">Sunday — 14:30</span>
+            <div class="speaker-card__name">Listening From the Heart</div>
+            <div class="speaker-card__role">Parents Circle Film — Presented by Jocelyn Horwitz</div>
+            <p class="speaker-card__desc">The Parents Circle – Families Forum unites over 800 bereaved Israeli and Palestinian families who have lost loved ones to the conflict. Believing reconciliation is prerequisite to peace, they focus on dialogue and shared humanity instead of revenge. Presented by Cape Town educator Jocelyn Horwitz.</p>
+          </article>
+
+          <article class="speaker-card">
+            <span class="speaker-card__slot">Sunday — 13:30 (Cape Town)</span>
+            <div class="speaker-card__name">The Youth Talk Back to Us</div>
+            <div class="speaker-card__role">Intergenerational Panel</div>
+            <p class="speaker-card__desc">What are the concerns and aspirations of Jewish youth at this divided and troubled time in our community? A panel of young people speak to each other — and to the bobbas and zeiders — about identity, responsibility, and what comes next.</p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="gold-rule" />
+
+    <!-- ══════════════════════════════════════════
+         WHY JDI NEEDS YOUR SUPPORT
+    ══════════════════════════════════════════ -->
+    <section class="section section--tinted" aria-labelledby="case-heading">
+      <div class="wrap">
+
+        <span class="section-eyebrow" id="case-heading">The Case for Support</span>
+        <h2>Why JDI's Work Matters — and Why It Is Difficult</h2>
+
+        <p class="lead">JDI occupies an uncomfortable position, deliberately. We are Jewish — this is not optional or rhetorical — and we hold our community to account. That combination makes us genuinely unpopular in certain circles, which is exactly the point.</p>
+
+        <div class="two-col">
+          <div>
+            <h3>The vacuum we fill</h3>
+            <p>When a South African chief rabbi publicly praises Trump and Musk without acknowledging their neo-fascist affiliations, JDI says so. When the Jewish Board of Deputies attacks protesters outside the Johannesburg Holocaust Centre with language described by our members as disproportionate and unwarranted, JDI says so. When the Israel attack on Iran in February 2026 is greeted with enthusiasm in Jewish circles while its recklessness goes unexamined, JDI says so.</p>
+            <p>There is no other organisation willing to say these things from within the Jewish community. That is not a boast. It is a problem that we are trying to address.</p>
+
+            <h3 style="margin-top:2rem;">The price of independence</h3>
+            <p>JDI members face social ostracism, professional pressure, and sometimes worse for their public positions. Our founding chair, <strong>Anton Harber</strong> — who helped build the Weekly Mail during the apartheid years, the newspaper that kept democratic journalism alive when the state was trying to kill it — knows what it costs to be an independent voice. So do our other directors.</p>
+            <p>We do not seek sympathy for this. We note it because it clarifies what it means to support JDI: you are supporting the act of speaking truth in an environment where that carries real consequences.</p>
+          </div>
+          <div>
+            <h3>The moment we are in</h3>
+            <p>As we write, Gaza is entering its third year of devastation. South Africa's ICJ case against Israel has focused global attention on this country as a moral actor in the conflict. The South African Jewish community is under pressure to choose sides — and most institutions have chosen the side of silence or complicity.</p>
+            <p>The Festival of Dangerous Ideas 2026 responds to this moment directly. By bringing Avrum Burg, Arab Barghouti, Azhar Cachalia, and Standing Together's Sally Abed to South African audiences on Mandela's birthday, we are making a public argument: that peace is possible, that it has precedent, and that the South African example — negotiated settlement between people who had done terrible things to each other — is not naive idealism but lived history.</p>
+
+            <h3 style="margin-top:2rem;">The MFF partnership</h3>
+            <p>When the Mauerberger Foundation Fund came under attack from Jewish communal voices for supporting organisations like ours, JDI published a public statement in your defence. We endorsed the Foundation's 80-year record of social justice funding and called out the attacks as hypocritical and politically motivated.</p>
+            <p>We did this because it was true and because it was right. The Mauerberger Foundation's willingness to continue funding progressive causes under communal pressure is itself an act of courage that deserves to be named as such. We are proud to be among the organisations you have supported, and we ask you to continue.</p>
+          </div>
+        </div>
+
+        <div class="pullquote" style="margin-top:3rem;">
+          <p>"Jews who care about justice cannot remain silent when injustice is perpetrated in their name. Speaking out is not a betrayal of Jewish identity — it is an expression of it."</p>
+          <cite>JDI Founding Statement, June 2017</cite>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="gold-rule" />
+
+    <!-- ══════════════════════════════════════════
+         FINANCIAL REQUEST
+    ══════════════════════════════════════════ -->
+    <section class="section" aria-labelledby="finance-heading">
+      <div class="wrap">
+
+        <span class="section-eyebrow" id="finance-heading">Financial Request</span>
+        <h2>Budget and Funding Request for 2026</h2>
+
+        <p>The budget below covers the Festival of Dangerous Ideas 2026 and our annual programme of events, statements, and services. We request a contribution of <strong>R&thinsp;350,000</strong> from the Mauerberger Foundation Fund, representing approximately 45% of the combined budget. The balance is funded through ticket income, member donations, and contributions from other supporters.</p>
+
+        <div class="request-callout" role="region" aria-label="Funding request summary">
+          <div class="request-callout__amount">R&thinsp;350,000</div>
+          <div class="request-callout__desc">
+            Requested from the Mauerberger Foundation Fund for the 2026 financial year.<br>
+            <span style="font-size:.88rem;opacity:.7;">R&thinsp;250,000 directed to the Festival of Dangerous Ideas · R&thinsp;100,000 to annual operations</span>
+          </div>
+        </div>
+
+        <h3>Festival of Dangerous Ideas 2026 — Budget</h3>
+
+        <div style="overflow-x:auto;">
+        <table class="budget-table">
+          <thead>
+            <tr>
+              <th style="width:60%;">Item</th>
+              <th>Notes</th>
+              <th>Amount (ZAR)</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="section-head">
+              <td colspan="3">Venue Hire</td>
+            </tr>
+            <tr>
+              <td>Hellenic Community Centre, Mouille Point — Saturday &amp; Sunday</td>
+              <td>Cape Town</td>
+              <td>R 28,000</td>
+            </tr>
+            <tr>
+              <td>Killarney Country Club, Houghton — Saturday &amp; Sunday</td>
+              <td>Johannesburg</td>
+              <td>R 35,000</td>
+            </tr>
+            <tr class="subtotal">
+              <td colspan="2">Subtotal — Venue</td>
+              <td>R 63,000</td>
+            </tr>
+
+            <tr class="section-head">
+              <td colspan="3">Catering</td>
+            </tr>
+            <tr>
+              <td>Cape Town — dinner Saturday, lunch Sunday, teas (est. 80 delegates)</td>
+              <td>Per head: ~R350</td>
+              <td>R 28,000</td>
+            </tr>
+            <tr>
+              <td>Johannesburg — dinner Saturday, lunch Sunday, teas (est. 80 delegates)</td>
+              <td>Per head: ~R400</td>
+              <td>R 32,000</td>
+            </tr>
+            <tr class="subtotal">
+              <td colspan="2">Subtotal — Catering</td>
+              <td>R 60,000</td>
+            </tr>
+
+            <tr class="section-head">
+              <td colspan="3">International Speaker Travel &amp; Accommodation</td>
+            </tr>
+            <tr>
+              <td>Avrum Burg — flights Israel–Johannesburg–Cape Town–Israel, 4 nights accommodation</td>
+              <td>Business class (age and prominence)</td>
+              <td>R 115,000</td>
+            </tr>
+            <tr>
+              <td>Arab Barghouti — international flights and accommodation</td>
+              <td>Travel from London</td>
+              <td>R 65,000</td>
+            </tr>
+            <tr class="subtotal">
+              <td colspan="2">Subtotal — International Travel</td>
+              <td>R 180,000</td>
+            </tr>
+
+            <tr class="section-head">
+              <td colspan="3">Technology &amp; Production</td>
+            </tr>
+            <tr>
+              <td>AV systems, screens, microphones — both venues</td>
+              <td>2-day hire + technicians</td>
+              <td>R 40,000</td>
+            </tr>
+            <tr>
+              <td>Live-streaming platform and inter-venue broadcast</td>
+              <td>Zoom + production crew</td>
+              <td>R 22,000</td>
+            </tr>
+            <tr>
+              <td>Photography and video documentation</td>
+              <td>Both venues</td>
+              <td>R 16,000</td>
+            </tr>
+            <tr class="subtotal">
+              <td colspan="2">Subtotal — Technology</td>
+              <td>R 78,000</td>
+            </tr>
+
+            <tr class="section-head">
+              <td colspan="3">Marketing &amp; Communications</td>
+            </tr>
+            <tr>
+              <td>Graphic design — programme, posters, digital assets</td>
+              <td></td>
+              <td>R 14,000</td>
+            </tr>
+            <tr>
+              <td>Print materials</td>
+              <td></td>
+              <td>R 8,000</td>
+            </tr>
+            <tr>
+              <td>Social media and digital advertising</td>
+              <td></td>
+              <td>R 12,000</td>
+            </tr>
+            <tr>
+              <td>Quicket platform fees (estimated, net of ticket income)</td>
+              <td>~3% of ticket value</td>
+              <td>R 4,000</td>
+            </tr>
+            <tr class="subtotal">
+              <td colspan="2">Subtotal — Marketing</td>
+              <td>R 38,000</td>
+            </tr>
+
+            <tr class="section-head">
+              <td colspan="3">Administration &amp; Coordination</td>
+            </tr>
+            <tr>
+              <td>Event coordinator (contract, 3 months)</td>
+              <td></td>
+              <td>R 36,000</td>
+            </tr>
+            <tr>
+              <td>Transport, logistics, miscellaneous</td>
+              <td></td>
+              <td>R 14,000</td>
+            </tr>
+            <tr class="subtotal">
+              <td colspan="2">Subtotal — Administration</td>
+              <td>R 50,000</td>
+            </tr>
+
+            <tr>
+              <td>Contingency (5%)</td>
+              <td></td>
+              <td>R 23,000</td>
+            </tr>
+
+            <tr class="total">
+              <td colspan="2"><strong>Festival Total Budget</strong></td>
+              <td><strong>R 492,000</strong></td>
+            </tr>
+
+            <tr class="section-head">
+              <td colspan="3">Festival Income</td>
+            </tr>
+            <tr class="income">
+              <td>Ticket sales (est. 150 delegates × average R750)</td>
+              <td>Cape Town + Johannesburg</td>
+              <td>(R 113,000)</td>
+            </tr>
+            <tr class="income">
+              <td>Other foundation funding (applications in progress)</td>
+              <td></td>
+              <td>(R 79,000)</td>
+            </tr>
+            <tr class="income">
+              <td>JDI member contributions</td>
+              <td></td>
+              <td>(R 50,000)</td>
+            </tr>
+
+            <tr class="total">
+              <td colspan="2"><strong>Festival Funding Gap</strong></td>
+              <td><strong>R 250,000</strong></td>
+            </tr>
+
+          </tbody>
+        </table>
+        </div>
+
+        <h3 style="margin-top:3rem;">Annual Programme Budget (excluding Festival)</h3>
+
+        <div style="overflow-x:auto;">
+        <table class="budget-table">
+          <thead>
+            <tr>
+              <th style="width:60%;">Item</th>
+              <th>Notes</th>
+              <th>Amount (ZAR)</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <td>Chadashot daily news service — editorial coordination</td>
+              <td>Part-time coordinator, 12 months</td>
+              <td>R 72,000</td>
+            </tr>
+            <tr>
+              <td>Events programme — 8–10 events (webinars, screenings, panels)</td>
+              <td>Average R 8,000 per event</td>
+              <td>R 72,000</td>
+            </tr>
+            <tr>
+              <td>Website maintenance and digital infrastructure</td>
+              <td>Hosting, updates, Netlify</td>
+              <td>R 18,000</td>
+            </tr>
+            <tr>
+              <td>Communications and social media</td>
+              <td>Instagram, Facebook, newsletter</td>
+              <td>R 22,000</td>
+            </tr>
+            <tr>
+              <td>General administration and incidentals</td>
+              <td></td>
+              <td>R 38,000</td>
+            </tr>
+
+            <tr class="total">
+              <td colspan="2"><strong>Annual Programme Total</strong></td>
+              <td><strong>R 222,000</strong></td>
+            </tr>
+
+            <tr>
+              <td>Less: member contributions and event income</td>
+              <td></td>
+              <td>(R 122,000)</td>
+            </tr>
+
+            <tr class="total">
+              <td colspan="2"><strong>Annual Programme Funding Gap</strong></td>
+              <td><strong>R 100,000</strong></td>
+            </tr>
+
+          </tbody>
+        </table>
+        </div>
+
+        <div class="request-callout" role="region" aria-label="Total request summary" style="background: var(--accent-2);">
+          <div class="request-callout__amount">R&thinsp;350,000</div>
+          <div class="request-callout__desc">
+            <strong style="color:#fff;">Total request from the Mauerberger Foundation Fund</strong><br>
+            R&thinsp;250,000 — Festival of Dangerous Ideas 2026<br>
+            R&thinsp;100,000 — Annual programme operations<br>
+            <span style="font-size:.88rem;opacity:.75;">Combined total annual budget: R&thinsp;714,000 · MFF share: 49%</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="gold-rule" />
+
+    <!-- ══════════════════════════════════════════
+         GOVERNANCE
+    ══════════════════════════════════════════ -->
+    <section class="section section--tinted" aria-labelledby="gov-heading">
+      <div class="wrap">
+
+        <span class="section-eyebrow" id="gov-heading">Governance &amp; Accountability</span>
+        <h2>Structure, Oversight, and Financial Management</h2>
+
+        <div class="gov-grid">
+          <div class="gov-card">
+            <h4>Legal Status</h4>
+            <p>JDI SA is a registered Non-Profit Organisation in South Africa. We are compliant with all NPO reporting requirements and submit annual financial statements to the Department of Social Development.</p>
+          </div>
+          <div class="gov-card">
+            <h4>All-Volunteer Leadership</h4>
+            <p>Every director on the national committee is a volunteer who receives no remuneration. This means that donated funds go directly to programme delivery, not to administrative overheads or salaries at committee level.</p>
+          </div>
+          <div class="gov-card">
+            <h4>Democratic Accountability</h4>
+            <p>Directors are elected annually at a General Meeting. Any signed member may vote. This structure ensures that leadership remains genuinely accountable to the membership, not to a self-perpetuating board.</p>
+          </div>
+          <div class="gov-card">
+            <h4>Financial Controls</h4>
+            <p>JDI's finances are managed by the Johannesburg committee, with oversight from the national committee. All significant expenditures require committee approval. Financial reports are presented at each AGM.</p>
+          </div>
+          <div class="gov-card">
+            <h4>Reporting to Funders</h4>
+            <p>We are committed to providing the Mauerberger Foundation Fund with a full narrative and financial report within three months of the Festival, and an annual report on programme activities by December 2026.</p>
+          </div>
+          <div class="gov-card">
+            <h4>Transparency</h4>
+            <p>All JDI statements, event summaries, and governance documents are publicly available at jdisa.org. We do not hold private positions or act privately contrary to our public commitments.</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top:2.5rem;">National Committee 2026</h3>
+        <p>The committee combines editorial experience (Manoim, Harber), legal and human rights expertise (Price), community leadership (Dubb, Schkolne, Frankenthal, Miller), and strategic management (Lubinsky, G. Harber). All bring established professional reputations and stand behind JDI's work publicly.</p>
+
+        <ul class="committee-list" style="margin-top:1.25rem;">
+          <li>
+            <span class="role">National Chair</span>
+            <span><strong>Irwin Manoim</strong> — Co-founder and former editor of the <em>Mail &amp; Guardian</em> (then the <em>Weekly Mail</em>)</span>
+          </li>
+          <li>
+            <span class="role">Cape Town</span>
+            <span><strong>Basil Dubb</strong> — Former chair; community elder and long-standing activist</span>
+          </li>
+          <li>
+            <span class="role">Cape Town</span>
+            <span><strong>Sally Frankenthal</strong> — Human rights advocate</span>
+          </li>
+          <li>
+            <span class="role">Cape Town</span>
+            <span><strong>Barbara Miller</strong></span>
+          </li>
+          <li>
+            <span class="role">Cape Town</span>
+            <span><strong>Raymond Schkolne</strong></span>
+          </li>
+          <li>
+            <span class="role">Johannesburg</span>
+            <span><strong>Anton Harber</strong> — Co-founder and former editor of the <em>Weekly Mail</em>; journalism professor</span>
+          </li>
+          <li>
+            <span class="role">Johannesburg</span>
+            <span><strong>Georgia Harber</strong></span>
+          </li>
+          <li>
+            <span class="role">Johannesburg</span>
+            <span><strong>David Lubinsky</strong></span>
+          </li>
+          <li>
+            <span class="role">Johannesburg</span>
+            <span><strong>Max Price</strong> — Former Vice-Chancellor of the University of Cape Town</span>
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CLOSING
+    ══════════════════════════════════════════ -->
+    <section class="closing" aria-labelledby="close-heading">
+      <div class="wrap" style="text-align:center;">
+
+        <span class="section-eyebrow" style="justify-content:center;display:block;">In Closing</span>
+        <h2 id="close-heading">Thank You</h2>
+
+        <p style="max-width:600px;margin-inline:auto;">
+          The work of the Jewish Democratic Initiative is necessary, difficult, and — we believe — genuinely consequential.
+          It is consequential not because we have power, but because we have independence: the independence to say
+          things that need to be said in a community that too often punishes those who say them.
+        </p>
+
+        <p style="max-width:600px;margin-inline:auto;margin-top:1rem;">
+          The Mauerberger Foundation Fund has shown, over eight decades, that it understands the difference between
+          comfortable philanthropy and transformative philanthropy. We are grateful for that understanding, and for the
+          trust you have placed in JDI's work. We ask you to renew that trust for 2026.
+        </p>
+
+        <div class="pullquote" style="border-color:rgba(255,255,255,.3);max-width:560px;margin:3rem auto 0;text-align:left;">
+          <p style="color:#fff;font-size:1.3rem;">"Even under the grimmest circumstances, peace is still possible when there is a determination to find it."</p>
+          <cite style="color:var(--accent);">JDI, on the choice of Mandela's birthday for the Festival, 2026</cite>
+        </div>
+
+        <div class="closing__contact">
+          <div class="closing__contact-item">
+            <span class="label">Email</span>
+            <span class="value">info@jdisa.org</span>
+          </div>
+          <div class="closing__contact-item">
+            <span class="label">Website</span>
+            <span class="value">jdisa.org</span>
+          </div>
+          <div class="closing__contact-item">
+            <span class="label">Instagram &amp; Facebook</span>
+            <span class="value">@jdi_movement</span>
+          </div>
+          <div class="closing__contact-item">
+            <span class="label">WhatsApp (Chadashot)</span>
+            <span class="value">Subscribe via website</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footnote-bar" role="contentinfo">
+    <p>Jewish Democratic Initiative SA &ensp;·&ensp; Registered Non-Profit Organisation &ensp;·&ensp; jdisa.org &ensp;·&ensp; Submitted June 2026</p>
+  </footer>
+
+</body>
+</html>
