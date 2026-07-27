@@ -8,6 +8,19 @@ function getYouTubeId(url) {
   return m ? m[1] : null;
 }
 
+// Read the DisplaySequence value regardless of whether the Notion column is a
+// Number, a Formula returning a number, or numeric text. Returns null if unset.
+function getDisplaySequence(props) {
+  const p = props.DisplaySequence;
+  if (!p) return null;
+  if (typeof p.number === "number") return p.number;
+  if (p.formula && typeof p.formula.number === "number") return p.formula.number;
+  const parts = p.rich_text ?? p.title ?? [];
+  const txt = parts.map(t => t.plain_text).join("").trim();
+  if (txt !== "" && !isNaN(Number(txt))) return Number(txt);
+  return null;
+}
+
 exports.handler = async function () {
   try {
     let results = [];
@@ -48,9 +61,22 @@ exports.handler = async function () {
       const url        = props.URL?.url ?? null;
       const blurb      = (props.Blurb?.rich_text ?? []).map(t => t.plain_text).join('');
       const youtubeId  = getYouTubeId(url);
+      const seq        = getDisplaySequence(props);
 
-      return { name, date, url, youtubeId, blurb };
+      return { name, date, url, youtubeId, blurb, seq };
     }).filter(v => v.name && v.youtubeId);
+
+    // Order by DisplaySequence ascending. Videos are already sorted by Date
+    // descending above, so a stable sort keeps that as the fallback ordering
+    // for ties and for any video with no DisplaySequence set (pushed to the end).
+    videos.sort((a, b) => {
+      if (a.seq == null && b.seq == null) return 0;
+      if (a.seq == null) return 1;
+      if (b.seq == null) return -1;
+      return a.seq - b.seq;
+    });
+
+    videos.forEach(v => { delete v.seq; });
 
     return {
       statusCode: 200,
