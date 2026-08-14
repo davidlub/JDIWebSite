@@ -6,6 +6,10 @@ notion_import.py
 notion_add_pictures.py
 notion_upload_docs.py
 
+# Source documents — contain personal contact details and financial figures
+# that must not be published. Do not commit.
+GalileeDreamers/
+
 # Local IDE / tool settings
 .claude/settings.local.json
 
