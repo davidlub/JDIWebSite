@@ -418,7 +418,7 @@ p:last-child { margin-bottom: 0; }
 }
 .hero-stat .lbl {
   font-size: .8rem;
-  color: rgba(255,255,255,.55);
+  color: rgba(255,255,255,.85);
   text-transform: uppercase;
   letter-spacing: .1em;
 }
