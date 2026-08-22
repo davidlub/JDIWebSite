@@ -36,13 +36,18 @@ Links and asset paths are **relative**, so they differ by depth:
 ### CSS Design System (`css/main.css`)
 
 All design tokens are CSS custom properties on `:root`:
-- `--color-primary: #1a3a6b` — democratic blue
-- `--color-gold: #c8a84b` — Jewish gold accent
+- `--color-primary: #942A2A` — JDI red, `--color-primary-light: #b83535`
+- `--color-gold: #c8a84b` — Jewish gold accent, `--color-gold-light: #e8c97a`
 - `--color-green: #2d6a4f` — South African green
-- `--color-bg-dark: #0f2040` — dark section backgrounds
+- `--color-accent: #b83535` — alerts / CTAs
+- `--color-bg-dark: #6b1f1f` — dark (deep red) section backgrounds
+- `--color-bg: #f5f7fa`, `--color-surface: #ffffff`, `--color-border: #dde3ec`
+- `--color-text: #1a1a2e`, `--color-text-muted: #5a6a7a`
 - `--font-sans: Inter`, `--font-serif: Playfair Display` (Google Fonts)
 - `--max-width: 1200px`, `--nav-height: 72px`
 - Shadow and border-radius scales: `--shadow-sm/md/lg`, `--radius-sm/md/lg/xl`
+
+Because `--color-primary` and `--color-bg-dark` are dark reds, anything placed on them needs an explicit light colour — text that falls back to `--color-text` is near-black and unreadable. Note that `.section--gold` is a misnomer: it renders a `--color-primary` → `--color-primary-light` red gradient, not gold. `.cta-band` is the actual gold band.
 
 Layout utilities: `.grid-2`, `.grid-3`, `.grid-4` (CSS Grid), `.flex`, `.flex-center`, `.flex-between`.
 

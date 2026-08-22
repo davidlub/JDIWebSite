@@ -395,15 +395,30 @@ by depth: - From <code>index.html</code>: <code>pages/about.html</code>,
 <div id="css-design-system-cssmain.css" class="section level3">
 <h3>CSS Design System (<code>css/main.css</code>)</h3>
 <p>All design tokens are CSS custom properties on <code>:root</code>: -
-<code>--color-primary: #1a3a6b</code> — democratic blue -
-<code>--color-gold: #c8a84b</code> — Jewish gold accent -
+<code>--color-primary: #942A2A</code> — JDI red,
+<code>--color-primary-light: #b83535</code> -
+<code>--color-gold: #c8a84b</code> — Jewish gold accent,
+<code>--color-gold-light: #e8c97a</code> -
 <code>--color-green: #2d6a4f</code> — South African green -
-<code>--color-bg-dark: #0f2040</code> — dark section backgrounds -
+<code>--color-accent: #b83535</code> — alerts / CTAs -
+<code>--color-bg-dark: #6b1f1f</code> — dark (deep red) section
+backgrounds - <code>--color-bg: #f5f7fa</code>,
+<code>--color-surface: #ffffff</code>,
+<code>--color-border: #dde3ec</code> -
+<code>--color-text: #1a1a2e</code>,
+<code>--color-text-muted: #5a6a7a</code> -
 <code>--font-sans: Inter</code>,
 <code>--font-serif: Playfair Display</code> (Google Fonts) -
 <code>--max-width: 1200px</code>, <code>--nav-height: 72px</code> -
 Shadow and border-radius scales: <code>--shadow-sm/md/lg</code>,
 <code>--radius-sm/md/lg/xl</code></p>
+<p>Because <code>--color-primary</code> and <code>--color-bg-dark</code>
+are dark reds, anything placed on them needs an explicit light colour —
+text that falls back to <code>--color-text</code> is near-black and
+unreadable. Note that <code>.section--gold</code> is a misnomer: it
+renders a <code>--color-primary</code> → <code>--color-primary-light</code>
+red gradient, not gold. <code>.cta-band</code> is the actual gold
+band.</p>
 <p>Layout utilities: <code>.grid-2</code>, <code>.grid-3</code>,
 <code>.grid-4</code> (CSS Grid), <code>.flex</code>,
 <code>.flex-center</code>, <code>.flex-between</code>.</p>
